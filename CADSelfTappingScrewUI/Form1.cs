@@ -15,6 +15,8 @@ namespace CADSelfTappingScrewUI
         public Form1()
         {
             InitializeComponent();
+            errorLabel.Text =
+                "Ошибка в поле d - Пустое поле\nОшибка в поле d2 - Нечисловое значение\nОшибка в поле l - Значение меньше минимума\nОшибка в поле P - Значение больше максимума\n";
         }
 
         private void CheckInput(double min, double max, TextBox textBox)
