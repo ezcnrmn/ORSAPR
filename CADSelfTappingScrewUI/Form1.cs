@@ -7,14 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CADSelfTappingScrew;
+using Kompas3DWrapper;
 
 namespace CADSelfTappingScrewUI
 {
     public partial class Form1 : Form
     {
+
+        private Class1 _kompClass1 = new Class1();
+        
+        private SelfTappingScrewParameters _selfTappingScrew = new SelfTappingScrewParameters();
+        
         public Form1()
         {
             InitializeComponent();
+            
+            _selfTappingScrew.HeadDiameter = 5;
+            _selfTappingScrew.HeadHight = 1;
+            _selfTappingScrew.RodLength = 96;
+            _selfTappingScrew.ThreadLength = 95;
+            _selfTappingScrew.ThreadDiameter = 4.7;
+            _selfTappingScrew.ThreadStep = 4;
+            _selfTappingScrew.RodDiameter = 4.5;
+            _selfTappingScrew.InternalThreadDiameter = 4;
         }
 
         private void CheckInput(double min, double max, TextBox textBox)
@@ -97,12 +113,15 @@ namespace CADSelfTappingScrewUI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            /*
             string errorText = "Ошибка в поле d - Пустое поле\nОшибка в поле d2 - Нечисловое значение\nОшибка в поле l - Значение меньше минимума\nОшибка в поле P - Значение больше максимума\n";
             MessageBox.Show(
                 errorText,
                 "Сообщение",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
+            */
+            _kompClass1.OpenKompas();
         }
     }
 }
