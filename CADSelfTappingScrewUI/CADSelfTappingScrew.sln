@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CADSelfTappingScrew", "..\C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas3DWrapper", "..\Kompas3DWrapper\Kompas3DWrapper.csproj", "{30C16564-0518-4B65-A38A-E05470CF8A08}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{32F5A7AB-FC0C-4723-9DC8-5E970EA75E86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CADSelfTappingScrew.UnitTests", "..\Testing\CADSelfTappingScrew.UnitTests\CADSelfTappingScrew.UnitTests.csproj", "{546E9CBB-8643-41AF-85C9-7921BA78C560}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +31,16 @@ Global
 		{30C16564-0518-4B65-A38A-E05470CF8A08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30C16564-0518-4B65-A38A-E05470CF8A08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30C16564-0518-4B65-A38A-E05470CF8A08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{546E9CBB-8643-41AF-85C9-7921BA78C560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{546E9CBB-8643-41AF-85C9-7921BA78C560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{546E9CBB-8643-41AF-85C9-7921BA78C560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{546E9CBB-8643-41AF-85C9-7921BA78C560}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{546E9CBB-8643-41AF-85C9-7921BA78C560} = {32F5A7AB-FC0C-4723-9DC8-5E970EA75E86}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7F3C7474-C5FD-4918-B8AA-A3C7B9A83F65}

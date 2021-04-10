@@ -130,7 +130,7 @@ namespace CADSelfTappingScrew
                 dependentParameter = (dependentParameter < RodDiameter) ? dependentParameter : RodDiameter;
                 string parameterName = "Внутренний диаметр резьбы";
 
-                if (min <= value && value <= max && value < dependentParameter)
+                if (min <= value && value <= max && (value < dependentParameter || dependentParameter == 0))
                 {
                     _internalThreadDiameter = value;
                 }
@@ -164,7 +164,7 @@ namespace CADSelfTappingScrew
                 double min = 1.6;
                 double max = 10.0;
                 double dependentParameter1 = (InternalThreadDiameter < min) ? min : InternalThreadDiameter;
-                double dependentParameter2 = (HeadDiameter < max) ? HeadDiameter : max;
+                double dependentParameter2 = (HeadDiameter < max && HeadDiameter != 0) ? HeadDiameter : max;
                 string parameterName = "Общий диаметр стержня";
 
                 if (dependentParameter1 < value && value < dependentParameter2)
@@ -228,10 +228,10 @@ namespace CADSelfTappingScrew
                 double min = 1.6;
                 double max = 10.0;
                 double dependentParameter1 = (InternalThreadDiameter < min)? min : InternalThreadDiameter;
-                double dependentParameter2 = (HeadDiameter < max)? HeadDiameter : max;
+                double dependentParameter2 = (HeadDiameter < max && HeadDiameter != 0)? HeadDiameter : max;
                 string parameterName = "Диаметр резьбы";
 
-                if (dependentParameter1 < value && value < dependentParameter2)
+                if (dependentParameter1 < value && value < dependentParameter2 || dependentParameter2 == 0)
                 {
                     _threadDiameter = value;
                 }
@@ -258,7 +258,7 @@ namespace CADSelfTappingScrew
                 double dependentParameter = RodLength;
                 string parameterName = "Длина части стержня с резьбой";
 
-                if (min <= value && value <= max && value < dependentParameter)
+                if (min <= value && value <= max && (value < dependentParameter || dependentParameter == 0))
                 {
                     _threadLength = value;
                 }
