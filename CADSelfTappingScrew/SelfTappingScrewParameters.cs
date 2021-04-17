@@ -65,7 +65,7 @@ namespace CADSelfTappingScrew
                 double dependentParameter =
                     (InternalThreadDiameter < ThreadDiameter) ? ThreadDiameter : InternalThreadDiameter;
                 dependentParameter = (dependentParameter < RodDiameter) ? RodDiameter : dependentParameter;
-                string parameterName = "Внутренний диаметр головки";
+                string parameterName = "Внутренний диаметр головки (D)";
 
                 if (min <= value && value <= max && value > dependentParameter)
                 {
@@ -100,7 +100,7 @@ namespace CADSelfTappingScrew
             {
                 double min = 0.96;
                 double max = 5.0;
-                string parameterName = "Высота головки";
+                string parameterName = "Высота головки (K)";
 
                 if (min <= value && value <= max)
                 {
@@ -128,7 +128,7 @@ namespace CADSelfTappingScrew
                 double max = 7.0;
                 double dependentParameter = (ThreadDiameter < HeadDiameter)? ThreadDiameter : HeadDiameter;
                 dependentParameter = (dependentParameter < RodDiameter) ? dependentParameter : RodDiameter;
-                string parameterName = "Внутренний диаметр резьбы";
+                string parameterName = "Внутренний диаметр резьбы (d2)";
 
                 if (min <= value && value <= max && (value < dependentParameter || dependentParameter == 0))
                 {
@@ -165,7 +165,7 @@ namespace CADSelfTappingScrew
                 double max = 10.0;
                 double dependentParameter1 = (InternalThreadDiameter < min) ? min : InternalThreadDiameter;
                 double dependentParameter2 = (HeadDiameter < max && HeadDiameter != 0) ? HeadDiameter : max;
-                string parameterName = "Общий диаметр стержня";
+                string parameterName = "Общий диаметр стержня (d1)";
 
                 if (dependentParameter1 < value && value < dependentParameter2)
                 {
@@ -192,7 +192,7 @@ namespace CADSelfTappingScrew
                 double min = 7.0;
                 double max = 100.0;
                 double dependentParameter = ThreadDiameter;
-                string parameterName = "Общая длина стержня";
+                string parameterName = "Общая длина стержня (l)";
 
                 if (min <= value && value <= max && value > dependentParameter)
                 {
@@ -229,7 +229,7 @@ namespace CADSelfTappingScrew
                 double max = 10.0;
                 double dependentParameter1 = (InternalThreadDiameter < min)? min : InternalThreadDiameter;
                 double dependentParameter2 = (HeadDiameter < max && HeadDiameter != 0)? HeadDiameter : max;
-                string parameterName = "Диаметр резьбы";
+                string parameterName = "Диаметр резьбы (d)";
 
                 if (dependentParameter1 < value && value < dependentParameter2 || dependentParameter2 == 0)
                 {
@@ -256,7 +256,7 @@ namespace CADSelfTappingScrew
                 double min = 3.0;
                 double max = 97.0;
                 double dependentParameter = RodLength;
-                string parameterName = "Длина части стержня с резьбой";
+                string parameterName = "Длина части стержня с резьбой (b)";
 
                 if (min <= value && value <= max && (value < dependentParameter || dependentParameter == 0))
                 {
@@ -291,7 +291,7 @@ namespace CADSelfTappingScrew
             {
                 double min = 0.8;
                 double max = 4.5;
-                string parameterName = "Шаг резьбы";
+                string parameterName = "Шаг резьбы (P)";
 
                 if (min <= value && value <= max)
                 {

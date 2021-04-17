@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CADSelfTappingScrewUI", "CA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CADSelfTappingScrew", "..\CADSelfTappingScrew\CADSelfTappingScrew.csproj", "{F3F6EF5E-3E8D-47F1-A536-5A07D0D53A76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompas3DWrapper", "..\Kompas3DWrapper\Kompas3DWrapper.csproj", "{30C16564-0518-4B65-A38A-E05470CF8A08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KompasWrapper", "..\Kompas3DWrapper\KompasWrapper.csproj", "{30C16564-0518-4B65-A38A-E05470CF8A08}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{32F5A7AB-FC0C-4723-9DC8-5E970EA75E86}"
 EndProject
