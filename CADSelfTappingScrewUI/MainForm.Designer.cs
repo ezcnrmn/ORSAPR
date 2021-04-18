@@ -57,6 +57,10 @@ namespace CADSelfTappingScrewUI
             this.schemePictureBox = new System.Windows.Forms.PictureBox();
             this.schemeGroupBox = new System.Windows.Forms.GroupBox();
             this.buildButton = new System.Windows.Forms.Button();
+            this.minParametersRadioButton = new System.Windows.Forms.RadioButton();
+            this.defaultParametersRadioButton = new System.Windows.Forms.RadioButton();
+            this.maxParametersRadioButton = new System.Windows.Forms.RadioButton();
+            this.manualInputRadioButton = new System.Windows.Forms.RadioButton();
             this.parametersGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.schemePictureBox)).BeginInit();
             this.schemeGroupBox.SuspendLayout();
@@ -315,6 +319,10 @@ namespace CADSelfTappingScrewUI
             // 
             // schemeGroupBox
             // 
+            this.schemeGroupBox.Controls.Add(this.manualInputRadioButton);
+            this.schemeGroupBox.Controls.Add(this.maxParametersRadioButton);
+            this.schemeGroupBox.Controls.Add(this.defaultParametersRadioButton);
+            this.schemeGroupBox.Controls.Add(this.minParametersRadioButton);
             this.schemeGroupBox.Controls.Add(this.schemePictureBox);
             this.schemeGroupBox.Location = new System.Drawing.Point(12, 89);
             this.schemeGroupBox.Name = "schemeGroupBox";
@@ -331,6 +339,54 @@ namespace CADSelfTappingScrewUI
             this.buildButton.Text = "Построить";
             this.buildButton.UseVisualStyleBackColor = true;
             this.buildButton.Click += new System.EventHandler(this.buildButton_Click);
+            // 
+            // minParametersRadioButton
+            // 
+            this.minParametersRadioButton.AutoSize = true;
+            this.minParametersRadioButton.Location = new System.Drawing.Point(450, 169);
+            this.minParametersRadioButton.Name = "minParametersRadioButton";
+            this.minParametersRadioButton.Size = new System.Drawing.Size(109, 17);
+            this.minParametersRadioButton.TabIndex = 1;
+            this.minParametersRadioButton.TabStop = true;
+            this.minParametersRadioButton.Text = "Мин. параметры";
+            this.minParametersRadioButton.UseVisualStyleBackColor = true;
+            this.minParametersRadioButton.CheckedChanged += new System.EventHandler(this.minParametersRadioButton_CheckedChanged);
+            // 
+            // defaultParametersRadioButton
+            // 
+            this.defaultParametersRadioButton.AutoSize = true;
+            this.defaultParametersRadioButton.Location = new System.Drawing.Point(450, 192);
+            this.defaultParametersRadioButton.Name = "defaultParametersRadioButton";
+            this.defaultParametersRadioButton.Size = new System.Drawing.Size(98, 17);
+            this.defaultParametersRadioButton.TabIndex = 2;
+            this.defaultParametersRadioButton.TabStop = true;
+            this.defaultParametersRadioButton.Text = "По-умолчанию";
+            this.defaultParametersRadioButton.UseVisualStyleBackColor = true;
+            this.defaultParametersRadioButton.CheckedChanged += new System.EventHandler(this.defaultParametersRadioButton_CheckedChanged);
+            // 
+            // maxParametersRadioButton
+            // 
+            this.maxParametersRadioButton.AutoSize = true;
+            this.maxParametersRadioButton.Location = new System.Drawing.Point(450, 215);
+            this.maxParametersRadioButton.Name = "maxParametersRadioButton";
+            this.maxParametersRadioButton.Size = new System.Drawing.Size(115, 17);
+            this.maxParametersRadioButton.TabIndex = 3;
+            this.maxParametersRadioButton.TabStop = true;
+            this.maxParametersRadioButton.Text = "Макс. параметры";
+            this.maxParametersRadioButton.UseVisualStyleBackColor = true;
+            this.maxParametersRadioButton.CheckedChanged += new System.EventHandler(this.maxParametersRadioButton_CheckedChanged);
+            // 
+            // manualInputRadioButton
+            // 
+            this.manualInputRadioButton.AutoSize = true;
+            this.manualInputRadioButton.Location = new System.Drawing.Point(472, 19);
+            this.manualInputRadioButton.Name = "manualInputRadioButton";
+            this.manualInputRadioButton.Size = new System.Drawing.Size(87, 17);
+            this.manualInputRadioButton.TabIndex = 4;
+            this.manualInputRadioButton.TabStop = true;
+            this.manualInputRadioButton.Text = "Ручной ввод";
+            this.manualInputRadioButton.UseVisualStyleBackColor = true;
+            this.manualInputRadioButton.CheckedChanged += new System.EventHandler(this.manualInputRadioButton_CheckedChanged);
             // 
             // MainForm
             // 
@@ -349,6 +405,7 @@ namespace CADSelfTappingScrewUI
             this.parametersGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.schemePictureBox)).EndInit();
             this.schemeGroupBox.ResumeLayout(false);
+            this.schemeGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -383,6 +440,10 @@ namespace CADSelfTappingScrewUI
         private System.Windows.Forms.Label unitsLabel5;
         private System.Windows.Forms.Label unitsLabel8;
         private System.Windows.Forms.Label unitsLabel7;
+        private System.Windows.Forms.RadioButton maxParametersRadioButton;
+        private System.Windows.Forms.RadioButton defaultParametersRadioButton;
+        private System.Windows.Forms.RadioButton minParametersRadioButton;
+        private System.Windows.Forms.RadioButton manualInputRadioButton;
     }
 }
 

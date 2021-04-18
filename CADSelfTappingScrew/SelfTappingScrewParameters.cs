@@ -174,7 +174,7 @@ namespace CADSelfTappingScrew
                 else
                 {
                     string message = "Размер параметра \"" + parameterName + "\" должен быть не меньше " +
-                                     dependentParameter1 + " мм и не больше " + dependentParameter2 + " мм!";
+                                     dependentParameter1 + " мм и строго меньше " + dependentParameter2 + " мм!";
                     throw new ArgumentException(message);
                 }
             }
@@ -253,7 +253,7 @@ namespace CADSelfTappingScrew
 
             set
             {
-                double min = 3.0;
+                double min = 3.8;
                 double max = 97.0;
                 double dependentParameter = RodLength;
                 string parameterName = "Длина части стержня с резьбой (b)";

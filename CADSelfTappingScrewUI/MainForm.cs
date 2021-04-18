@@ -16,34 +16,35 @@ namespace CADSelfTappingScrewUI
 {
     public partial class MainForm : Form
     {
-        //private KompasWrapper.Kompas3DWrapper _kompas = new KompasWrapper.Kompas3DWrapper();
-        
-        //private SelfTappingScrewParameters _selfTappingScrew;
-
+        /// <summary>
+        /// 
+        /// </summary>
         Dictionary<string, bool> buildEnableDict = new Dictionary<string, bool>(8);
-
+        
         public MainForm()
         {
             InitializeComponent();
+            manualInputRadioButton.Checked = true;
+        }
 
-            buildEnableDict.Add(threadDiameterTextBox.Name, false);
-            buildEnableDict.Add(internalThreadDiameterTextBox.Name, false);
-            buildEnableDict.Add(rodLengthTextBox.Name, false);
-            buildEnableDict.Add(threadStepTextBox.Name, false);
-            buildEnableDict.Add(headHightTextBox.Name, false);
-            buildEnableDict.Add(threadLengthTextBox.Name, false);
-            buildEnableDict.Add(headDiameterTextBox.Name, false);
-            buildEnableDict.Add(rodDiameterTextBox.Name, false);
-
-            //тестовые данные
-            threadDiameterTextBox.Text = "8";
-            internalThreadDiameterTextBox.Text = "7";
-            rodLengthTextBox.Text = "90";
-            threadStepTextBox.Text = "3,1";
-            headHightTextBox.Text = "5";
-            threadLengthTextBox.Text = "63";
-            headDiameterTextBox.Text = "14";
-            rodDiameterTextBox.Text = "9,95";
+        private void SetParameters(string[] parameters, bool enable)
+        {
+            threadDiameterTextBox.Text = parameters[0];
+            buildEnableDict["threadDiameterTextBox"] = enable;
+            internalThreadDiameterTextBox.Text = parameters[1];
+            buildEnableDict["internalThreadDiameterTextBox"] = enable;
+            rodLengthTextBox.Text = parameters[2];
+            buildEnableDict["rodLengthTextBox"] = enable;
+            threadStepTextBox.Text = parameters[3];
+            buildEnableDict["threadStepTextBox"] = enable;
+            headHightTextBox.Text = parameters[4];
+            buildEnableDict["headHightTextBox"] = enable;
+            threadLengthTextBox.Text = parameters[5];
+            buildEnableDict["threadLengthTextBox"] = enable;
+            headDiameterTextBox.Text = parameters[6];
+            buildEnableDict["headDiameterTextBox"] = enable;
+            rodDiameterTextBox.Text = parameters[7];
+            buildEnableDict["rodDiameterTextBox"] = enable;
         }
 
         private void CheckInput(TextBox textBox)
@@ -131,9 +132,6 @@ namespace CADSelfTappingScrewUI
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-
-            //_kompClass1.OpenKompas();
-
         }
 
         private void threadDiameterTextBox_Leave(object sender, EventArgs e)
@@ -174,6 +172,30 @@ namespace CADSelfTappingScrewUI
         private void rodDiameterTextBox_Leave(object sender, EventArgs e)
         {
             CheckInput(rodDiameterTextBox);
+        }
+
+        private void minParametersRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            string[] parametersValues = new string[8] { "1,7", "1,1", "7", "0,8", "0,96", "3,8", "3", "1,7" };
+            SetParameters(parametersValues, true);
+        }
+
+        private void defaultParametersRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            string[] parametersValues = new string[8] { "7,5", "5", "70", "2,5", "4", "50", "12", "7"};
+            SetParameters(parametersValues, true);
+        }
+
+        private void maxParametersRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            string[] parametersValues = new string[8] { "9,9", "7", "100", "4,5", "5", "97", "18", "9,9" };
+            SetParameters(parametersValues, true);
+        }
+
+        private void manualInputRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            string[] parametersValues = new string[8] { "", "", "", "", "", "", "", "" };
+            SetParameters(parametersValues, false);
         }
     }
 }

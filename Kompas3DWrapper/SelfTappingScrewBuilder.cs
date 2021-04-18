@@ -47,11 +47,13 @@ namespace KompasWrapper
             
             RotationOperation(kompas3DWrapper, iSketch2, iDefinitionSketch2);
 
-            MakeThread(kompas3DWrapper, selfTappingScrewParameters, slopeLength, tipLength);
-
+            // расчет длины и радиуса кончика
+            double tipLength2 = tipLength * 2 / 3;
+            double tipRadius = tipLength2 * Math.Sin(angle15) / Math.Sin(angle75);
+            MakeThread(kompas3DWrapper, selfTappingScrewParameters, slopeLength, tipLength, tipLength2 / 2, tipRadius);
         }
 
-        private void DrawTriangle(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParameters parameters,
+private void DrawTriangle(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParameters parameters,
             ksSketchDefinition iDefinitionSketch, double tipLength)
         {
             ksDocument2D rodDocument2D = (ksDocument2D)iDefinitionSketch.BeginEdit();
@@ -69,7 +71,7 @@ namespace KompasWrapper
             iDefinitionSketch.EndEdit();
         }
         
-        private void MakeThread(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParameters parameters, double slopeLength, double tipLength)
+        private void MakeThread(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParameters parameters, double slopeLength, double tipLength, double tipLength2, double tipRadius)
         {
             // рисуем треугольник
             ksEntity planeXoz = (ksEntity)kompas3DWrapper.iPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
@@ -89,7 +91,7 @@ namespace KompasWrapper
             iCylindricSpiralDefinition.diam = parameters.InternalThreadDiameter;
             iCylindricSpiralDefinition.buildMode = 1;
             iCylindricSpiralDefinition.step = parameters.ThreadStep;
-            iCylindricSpiralDefinition.height = parameters.ThreadLength - slopeLength / 2 - tipLength;
+            iCylindricSpiralDefinition.height = parameters.ThreadLength - slopeLength / 3 - tipLength;
             
             // плоскость XOY
             ksEntity planeXoy = (ksEntity)kompas3DWrapper.iPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
@@ -105,22 +107,41 @@ namespace KompasWrapper
             offsetPlane.Create();
             iCylindricSpiralDefinition.SetPlane(offsetPlane);
             cylindricSpiral.Create();
+            
+            // пускаем по траектории
+            Evolution(kompas3DWrapper, iTriangleSketch, cylindricSpiral);
+            
+            // создаем коническую спираль Объект модели (Интерфейсы ksEntity и IEntity)
+            ksEntity conicSpiral = (ksEntity)kompas3DWrapper.iPart.NewEntity((short)Obj3dType.o3d_conicSpiral);
+            ksConicSpiralDefinition iConicSpiralDefinition = (ksConicSpiralDefinition)conicSpiral.GetDefinition();
+            iConicSpiralDefinition.buildDir = false;
+            iConicSpiralDefinition.initialDiamType = 0;
+            iConicSpiralDefinition.initialDiam = parameters.InternalThreadDiameter;
+            iConicSpiralDefinition.buildMode = 1;
+            iConicSpiralDefinition.step = parameters.ThreadStep;
+            iConicSpiralDefinition.terminalDiamType = 0;
+            iConicSpiralDefinition.terminalDiam = tipRadius;
+            iConicSpiralDefinition.height = tipLength - tipLength2;
+
+            iConicSpiralDefinition.SetPlane(offsetPlane);
+            conicSpiral.Create();
 
             // пускаем по траектории
+            Evolution(kompas3DWrapper, iTriangleSketch, conicSpiral);
+        }
+
+        public void Evolution(Kompas3DWrapper kompas3DWrapper, ksEntity sketch, ksEntity path)
+        {
             ksEntity entityEvolution = kompas3DWrapper.iPart.NewEntity((short)Obj3dType.o3d_bossEvolution);
             ksBossEvolutionDefinition iRotateDefinition = (ksBossEvolutionDefinition)entityEvolution.GetDefinition();
             iRotateDefinition.SetThinParam(false);
-            iRotateDefinition.SetSketch(iTriangleSketch);
+            iRotateDefinition.SetSketch(sketch);
 
             var iArray = iRotateDefinition.PathPartArray();
-            iArray.Add(cylindricSpiral);
+            iArray.Add(path);
             entityEvolution.Create();
-
-            // создаем коническую спираль Объект модели (Интерфейсы ksEntity и IEntity)
-
-
         }
-
+        
         private void RotationOperation(Kompas3DWrapper kompas3DWrapper, ksEntity entitySketch, ksSketchDefinition definitionSketch)
         {
             var sketchAxis = (ksDocument2D)definitionSketch.BeginEdit();
