@@ -17,16 +17,24 @@ namespace CADSelfTappingScrewUI
     public partial class MainForm : Form
     {
         /// <summary>
-        /// 
+        /// Словарь корректно введенных значений для каждого текстового поля
         /// </summary>
         Dictionary<string, bool> buildEnableDict = new Dictionary<string, bool>(8);
         
+        /// <summary>
+        /// Главная форма
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
             manualInputRadioButton.Checked = true;
         }
 
+        /// <summary>
+        /// Функция установки параметров в поля параметров
+        /// </summary>
+        /// <param name="parameters">Массив параметров </param>
+        /// <param name="enable">Значение в buildEnableDict</param>
         private void SetParameters(string[] parameters, bool enable)
         {
             threadDiameterTextBox.Text = parameters[0];
@@ -46,7 +54,12 @@ namespace CADSelfTappingScrewUI
             rodDiameterTextBox.Text = parameters[7];
             buildEnableDict["rodDiameterTextBox"] = enable;
         }
-
+        
+        /// <summary>
+        /// Функция проверки ввода данных на возможность преорбразования в double
+        /// При невозможности меняет цвет поля на красный и выдает сообщение об ошибке
+        /// </summary>
+        /// <param name="textBox">Текстовое поля для проверки</param>
         private void CheckInput(TextBox textBox)
         {
             string sourceString = textBox.Text;
@@ -70,12 +83,9 @@ namespace CADSelfTappingScrewUI
                     buildEnableDict[textBox.Name] = false;
                     textBox.BackColor = Color.Salmon;
 
-                    string errorText = "Значение в текстовом поле должно быть числом!\nДесятичный разделитель - только \"запятая\"!";
-                    MessageBox.Show(
-                        errorText,
-                        "Внимание!",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    string errorMessage = "Значение в текстовом поле должно быть числом!\nДесятичный разделитель - только \"запятая\"!";
+                    MessageBox.Show(errorMessage, "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 }
             }
         }
@@ -105,32 +115,28 @@ namespace CADSelfTappingScrewUI
                     selfTappingScrewParameters.ThreadDiameter = double.Parse(threadDiameterTextBox.Text);
                     selfTappingScrewParameters.ThreadStep = double.Parse(threadStepTextBox.Text);
                     selfTappingScrewParameters.RodDiameter = double.Parse(rodDiameterTextBox.Text);
-                    selfTappingScrewParameters.InternalThreadDiameter = double.Parse(internalThreadDiameterTextBox.Text);
-
+                    selfTappingScrewParameters.InternalThreadDiameter =
+                        double.Parse(internalThreadDiameterTextBox.Text);
+                    
                     Kompas3DWrapper kompas3DWrapper = new Kompas3DWrapper();
                     kompas3DWrapper.OpenKompas();
-                    
+
                     SelfTappingScrewBuilder selfTappingScrewBuilder = new SelfTappingScrewBuilder();
                     selfTappingScrewBuilder.BuildSelfTappingScrew(kompas3DWrapper, selfTappingScrewParameters);
-                    
                 }
                 catch (ArgumentException a)
                 {
-                    MessageBox.Show(
-                        a.Message,
-                        "Внимание!",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                    string parameterName = a.ParamName;
+                    string textBoxName = parameterName + "TextBox";
+                    Control[] erroredTextBox = this.Controls.Find(textBoxName, true);
+                    erroredTextBox[0].BackColor = Color.Salmon;
+                    MessageBox.Show(a.Message.Split('\n')[0], "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                string message = "Необходимо заполнить все поля!";
-                MessageBox.Show(
-                    message,
-                    "Внимание!",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                string errorMessage = "Необходимо заполнить все поля!";
+                MessageBox.Show(errorMessage, "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -176,7 +182,7 @@ namespace CADSelfTappingScrewUI
 
         private void minParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            string[] parametersValues = new string[8] { "1,7", "1,1", "7", "0,8", "0,96", "3,8", "3", "1,7" };
+            string[] parametersValues = new string[8] { "1,61", "1,1", "7", "0,8", "0,96", "3,8", "3", "1,61" };
             SetParameters(parametersValues, true);
         }
 

@@ -7,11 +7,20 @@ using CADSelfTappingScrew;
 using Kompas6API5;
 using Kompas6Constants;
 using Kompas6Constants3D;
+using KompasAPI7;
 
 namespace KompasWrapper
 {
+    /// <summary>
+    /// Класс для отрисовки самореза
+    /// </summary>
     public class SelfTappingScrewBuilder
     {
+        /// <summary>
+        /// Функция постройки самореза
+        /// </summary>
+        /// <param name="kompas3DWrapper">Класс в котором вызван Компас-3D</param>
+        /// <param name="selfTappingScrewParameters">Параметры самореза</param>
         public void BuildSelfTappingScrew(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParameters selfTappingScrewParameters)
         {
             ksEntity planeXoy = (ksEntity)kompas3DWrapper.iPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
@@ -43,7 +52,7 @@ namespace KompasWrapper
             double angle75 = 75 * Math.PI / 180;
             double tipLength = selfTappingScrewParameters.InternalThreadDiameter / 2 * Math.Sin(angle75) /
                                Math.Sin(angle15);
-            DrawRod(kompas3DWrapper, selfTappingScrewParameters, iDefinitionSketch2, slopeLength, tipLength);
+            DrawRod(selfTappingScrewParameters, iDefinitionSketch2, slopeLength, tipLength);
             
             RotationOperation(kompas3DWrapper, iSketch2, iDefinitionSketch2);
 
@@ -53,8 +62,13 @@ namespace KompasWrapper
             MakeThread(kompas3DWrapper, selfTappingScrewParameters, slopeLength, tipLength, tipLength2 / 2, tipRadius);
         }
 
-private void DrawTriangle(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParameters parameters,
-            ksSketchDefinition iDefinitionSketch, double tipLength)
+        /// <summary>
+        /// Функция отрисовки чертежа зубца резьбы
+        /// </summary>
+        /// <param name="parameters">Параметры самореза</param>
+        /// <param name="iDefinitionSketch">Параметры эскиза</param>
+        /// <param name="tipLength">Длина кончика</param>
+        private void DrawTriangle(SelfTappingScrewParameters parameters, ksSketchDefinition iDefinitionSketch, double tipLength)
         {
             ksDocument2D rodDocument2D = (ksDocument2D)iDefinitionSketch.BeginEdit();
             // расчет параметров треугольничка
@@ -70,8 +84,18 @@ private void DrawTriangle(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParam
 
             iDefinitionSketch.EndEdit();
         }
-        
-        private void MakeThread(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParameters parameters, double slopeLength, double tipLength, double tipLength2, double tipRadius)
+
+        /// <summary>
+        /// Функция постройки резьбы
+        /// </summary>
+        /// <param name="kompas3DWrapper">Класс в котором вызван Компас-3D</param>
+        /// <param name="parameters">Параметры самореза</param>
+        /// <param name="slopeLength">Длина уклона ножки самореза</param>
+        /// <param name="tipLength">Длина кончика</param>
+        /// <param name="tipLength2">Длина резьбы на конце самореза</param>
+        /// <param name="tipRadius">Конечный радиус резьбы</param>
+        private void MakeThread(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParameters parameters,
+            double slopeLength, double tipLength, double tipLength2, double tipRadius)
         {
             // рисуем треугольник
             ksEntity planeXoz = (ksEntity)kompas3DWrapper.iPart.GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
@@ -79,9 +103,10 @@ private void DrawTriangle(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParam
 
             ksSketchDefinition iDefinitionTriangleSketch = (ksSketchDefinition)iTriangleSketch.GetDefinition();
             iDefinitionTriangleSketch.SetPlane(planeXoz);
+            iTriangleSketch.hidden = true;
             iTriangleSketch.Create();
-
-            DrawTriangle(kompas3DWrapper, parameters, iDefinitionTriangleSketch, tipLength);
+            
+            DrawTriangle(parameters, iDefinitionTriangleSketch, tipLength);
             
             // создаем цилиндрическую спираль
             ksEntity cylindricSpiral = (ksEntity)kompas3DWrapper.iPart.NewEntity((short)Obj3dType.o3d_cylindricSpiral);
@@ -128,8 +153,22 @@ private void DrawTriangle(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParam
 
             // пускаем по траектории
             Evolution(kompas3DWrapper, iTriangleSketch, conicSpiral);
+
+            // скрытие вспомогательных объектов
+            offsetPlane.hidden = true;
+            offsetPlane.Update();
+            conicSpiral.hidden = true;
+            conicSpiral.Update();
+            cylindricSpiral.hidden = true;
+            cylindricSpiral.Update();
         }
 
+        /// <summary>
+        /// Функция кинематического приклеивания
+        /// </summary>
+        /// <param name="kompas3DWrapper">Класс в котором вызван Компас-3D</param>
+        /// <param name="sketch">Чертеж объекта</param>
+        /// <param name="path">Траектория объекта</param>
         public void Evolution(Kompas3DWrapper kompas3DWrapper, ksEntity sketch, ksEntity path)
         {
             ksEntity entityEvolution = kompas3DWrapper.iPart.NewEntity((short)Obj3dType.o3d_bossEvolution);
@@ -137,11 +176,17 @@ private void DrawTriangle(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParam
             iRotateDefinition.SetThinParam(false);
             iRotateDefinition.SetSketch(sketch);
 
-            var iArray = iRotateDefinition.PathPartArray();
-            iArray.Add(path);
+            var pathArray = iRotateDefinition.PathPartArray();
+            pathArray.Add(path);
             entityEvolution.Create();
         }
-        
+
+        /// <summary>
+        /// Фукнция вращения вокруг оси OZ
+        /// </summary>
+        /// <param name="kompas3DWrapper">Класс в котором вызван Компас-3D</param>
+        /// <param name="entitySketch">Чертеж объекта</param>
+        /// <param name="definitionSketch">Параметры чертежа</param>
         private void RotationOperation(Kompas3DWrapper kompas3DWrapper, ksEntity entitySketch, ksSketchDefinition definitionSketch)
         {
             var sketchAxis = (ksDocument2D)definitionSketch.BeginEdit();
@@ -150,19 +195,22 @@ private void DrawTriangle(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParam
 
             ksEntity entityRotate = kompas3DWrapper.iPart.NewEntity((short)Obj3dType.o3d_bossRotated);
             // интерфейс базовой операции вращения
-            ksBossRotatedDefinition iRotateDefinition = (ksBossRotatedDefinition)entityRotate.GetDefinition(); 
-
-            //ksRotatedParam rotproperty = (ksRotatedParam)rotateDef.RotatedParam();
-            //rotproperty.toroidShape = true;
-            //rotproperty.direction = (short)Direction_Type.dtBoth;
+            ksBossRotatedDefinition iRotateDefinition = (ksBossRotatedDefinition)entityRotate.GetDefinition();
 
             iRotateDefinition.SetThinParam(false);
-            iRotateDefinition.SetSketch(entitySketch);  // эскиз операции вращения
-            entityRotate.Create();              // создать операцию
+            iRotateDefinition.SetSketch(entitySketch);
+            entityRotate.Create();
         }
 
-        private void DrawRod(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParameters parameters,
-            ksSketchDefinition iDefinitionSketch, double slopeLength, double tipLength) 
+        /// <summary>
+        /// Функция отрисовки чертежа ножки
+        /// </summary>
+        /// <param name="parameters">Параметры самореза</param>
+        /// <param name="iDefinitionSketch">Параметры чертежа</param>
+        /// <param name="slopeLength">Длина уклона ножки</param>
+        /// <param name="tipLength">Длина кончика</param>
+        private void DrawRod(SelfTappingScrewParameters parameters, ksSketchDefinition iDefinitionSketch,
+            double slopeLength, double tipLength) 
         {
             ksDocument2D rodDocument2D = (ksDocument2D)iDefinitionSketch.BeginEdit();
             // внутренняя линия эскиза ножки
@@ -180,31 +228,46 @@ private void DrawTriangle(Kompas3DWrapper kompas3DWrapper, SelfTappingScrewParam
                 parameters.InternalThreadDiameter / 2, parameters.RodLength - tipLength,
                 parameters.InternalThreadDiameter / 2, 1);
             // линия кончика (можно будеть заменить на кривую)
-            rodDocument2D.ksLineSeg(parameters.RodLength - tipLength, parameters.InternalThreadDiameter / 2,
-                parameters.RodLength, 0.0, 1);
+            // rodDocument2D.ksLineSeg(parameters.RodLength - tipLength, parameters.InternalThreadDiameter / 2, parameters.RodLength, 0.0, 1);
+            rodDocument2D.ksArcBy3Points(parameters.RodLength - tipLength, parameters.InternalThreadDiameter / 2,
+                parameters.RodLength - (tipLength * 0.9), parameters.InternalThreadDiameter / 2.07, parameters.RodLength,
+                0.0, 1);
+
             iDefinitionSketch.EndEdit();
         }
 
+        /// <summary>
+        /// Функция отрисовки шестиугольника
+        /// </summary>
+        /// <param name="kompas3DWrapper">Класс в котором вызван Компас-3D</param>
+        /// <param name="diameter">Диаметр шестиугольника</param>
+        /// <param name="iDefinitionSketch">Параметры чертежа</param>
         private void DrawHexagon(Kompas3DWrapper kompas3DWrapper, double diameter, ksSketchDefinition iDefinitionSketch)
         {
-            var hexagon = (ksRegularPolygonParam) kompas3DWrapper.kompas.GetParamStruct(
+            var polygonParam = (ksRegularPolygonParam) kompas3DWrapper.kompas.GetParamStruct(
                     (short) StructType2DEnum.ko_RegularPolygonParam);
             
-            hexagon.ang = 0;
-            hexagon.count = 6;
-            hexagon.describe = true;
-            hexagon.radius = diameter / 2;
-            hexagon.style = 1;
-            hexagon.xc = 0;
-            hexagon.yc = 0;
+            polygonParam.ang = 0;
+            polygonParam.xc = 0;
+            polygonParam.yc = 0;
+            polygonParam.count = 6;
+            polygonParam.describe = true;
+            polygonParam.radius = diameter / 2;
+            polygonParam.style = 1;
 
             ksDocument2D hexDocument2D = (ksDocument2D)iDefinitionSketch.BeginEdit();
 
-            hexDocument2D.ksRegularPolygon(hexagon);
+            hexDocument2D.ksRegularPolygon(polygonParam);
 
             iDefinitionSketch.EndEdit();
         }
 
+        /// <summary>
+        /// Функция выдавливания
+        /// </summary>
+        /// <param name="kompas3DWrapper">Класс в котором вызван Компас-3D</param>
+        /// <param name="depth">Глубина выдавливания</param>
+        /// <param name="iSketch">Чертеж объекта</param>
         private void Extrusion(Kompas3DWrapper kompas3DWrapper, double depth, ksEntity iSketch)
         {
             ksEntity extrusion = kompas3DWrapper.iPart.NewEntity(24);
