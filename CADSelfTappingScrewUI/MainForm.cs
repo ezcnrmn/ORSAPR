@@ -155,62 +155,60 @@ namespace CADSelfTappingScrewUI
         }
 
         //TODO: Duplication
-        private void threadDiameterTextBox_Leave(object sender, EventArgs e)
+        private void TextBox_Leave(object sender, EventArgs e)
         {
-            CheckInput(threadDiameterTextBox);
+            CheckInput((TextBox)sender);
         }
-
-        private void internalThreadDiameterTextBox_Leave(object sender, EventArgs e)
-        {
-            CheckInput(internalThreadDiameterTextBox);
-        }
-
-        private void rodLengthTextBox_Leave(object sender, EventArgs e)
-        {
-            CheckInput(rodLengthTextBox);
-        }
-
-        private void threadStepTextBox_Leave(object sender, EventArgs e)
-        {
-            CheckInput(threadStepTextBox);
-        }
-
-        private void headHightTextBox_Leave(object sender, EventArgs e)
-        {
-            CheckInput(headHightTextBox);
-        }
-
-        private void threadLengthTextBox_Leave(object sender, EventArgs e)
-        {
-            CheckInput(threadLengthTextBox);
-        }
-
-        private void headDiameterTextBox_Leave(object sender, EventArgs e)
-        {
-            CheckInput(headDiameterTextBox);
-        }
-
-        private void rodDiameterTextBox_Leave(object sender, EventArgs e)
-        {
-            CheckInput(rodDiameterTextBox);
-        }
-
+        
         //TODO: Должно быть в модели данных
         private void minParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            string[] parametersValues = new string[8] { "1,61", "1,1", "7", "0,8", "0,96", "3,8", "3", "1,61" };
+            string[] parametersValues = new string[8]
+            {
+                SelfTappingScrewParameters.MinValues["ThreadDiameter"].ToString(),
+                SelfTappingScrewParameters.MinValues["InternalThreadDiameter"].ToString(),
+                SelfTappingScrewParameters.MinValues["RodLength"].ToString(),
+                SelfTappingScrewParameters.MinValues["ThreadStep"].ToString(),
+                SelfTappingScrewParameters.MinValues["HeadHight"].ToString(),
+                SelfTappingScrewParameters.MinValues["ThreadLength"].ToString(),
+                SelfTappingScrewParameters.MinValues["HeadDiameter"].ToString(),
+                SelfTappingScrewParameters.MinValues["RodDiameter"].ToString()
+            };
+
             SetParameters(parametersValues, true);
         }
 
         private void defaultParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            string[] parametersValues = new string[8] { "7,5", "5", "70", "2,5", "4", "50", "12", "7"};
+            string[] parametersValues = new string[8]
+            {
+                SelfTappingScrewParameters.DefaultValues["ThreadDiameter"].ToString(),
+                SelfTappingScrewParameters.DefaultValues["InternalThreadDiameter"].ToString(),
+                SelfTappingScrewParameters.DefaultValues["RodLength"].ToString(),
+                SelfTappingScrewParameters.DefaultValues["ThreadStep"].ToString(),
+                SelfTappingScrewParameters.DefaultValues["HeadHight"].ToString(),
+                SelfTappingScrewParameters.DefaultValues["ThreadLength"].ToString(),
+                SelfTappingScrewParameters.DefaultValues["HeadDiameter"].ToString(),
+                SelfTappingScrewParameters.DefaultValues["RodDiameter"].ToString()
+            };
+            
             SetParameters(parametersValues, true);
         }
 
         private void maxParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            string[] parametersValues = new string[8] { "9,9", "7", "100", "4,5", "5", "97", "18", "9,9" };
+            string[] parametersValues = new string[8]
+            {
+                SelfTappingScrewParameters.MaxValues["ThreadDiameter"].ToString(),
+                SelfTappingScrewParameters.MaxValues["InternalThreadDiameter"].ToString(),
+                SelfTappingScrewParameters.MaxValues["RodLength"].ToString(),
+                SelfTappingScrewParameters.MaxValues["ThreadStep"].ToString(),
+                SelfTappingScrewParameters.MaxValues["HeadHight"].ToString(),
+                SelfTappingScrewParameters.MaxValues["ThreadLength"].ToString(),
+                SelfTappingScrewParameters.MaxValues["HeadDiameter"].ToString(),
+                SelfTappingScrewParameters.MaxValues["RodDiameter"].ToString()
+            };
+            
             SetParameters(parametersValues, true);
         }
 

@@ -176,7 +176,7 @@ namespace CADSelfTappingScrewUI
             this.headDiameterTextBox.Name = "headDiameterTextBox";
             this.headDiameterTextBox.Size = new System.Drawing.Size(45, 20);
             this.headDiameterTextBox.TabIndex = 15;
-            this.headDiameterTextBox.Leave += new System.EventHandler(this.headDiameterTextBox_Leave);
+            this.headDiameterTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // headDiameterLabel
             // 
@@ -193,7 +193,7 @@ namespace CADSelfTappingScrewUI
             this.rodDiameterTextBox.Name = "rodDiameterTextBox";
             this.rodDiameterTextBox.Size = new System.Drawing.Size(45, 20);
             this.rodDiameterTextBox.TabIndex = 13;
-            this.rodDiameterTextBox.Leave += new System.EventHandler(this.rodDiameterTextBox_Leave);
+            this.rodDiameterTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // rodDiameterLabel
             // 
@@ -210,7 +210,7 @@ namespace CADSelfTappingScrewUI
             this.internalThreadDiameterTextBox.Name = "internalThreadDiameterTextBox";
             this.internalThreadDiameterTextBox.Size = new System.Drawing.Size(45, 20);
             this.internalThreadDiameterTextBox.TabIndex = 11;
-            this.internalThreadDiameterTextBox.Leave += new System.EventHandler(this.internalThreadDiameterTextBox_Leave);
+            this.internalThreadDiameterTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // internalThreadDiameterLabel
             // 
@@ -227,7 +227,7 @@ namespace CADSelfTappingScrewUI
             this.threadDiameterTextBox.Name = "threadDiameterTextBox";
             this.threadDiameterTextBox.Size = new System.Drawing.Size(45, 20);
             this.threadDiameterTextBox.TabIndex = 9;
-            this.threadDiameterTextBox.Leave += new System.EventHandler(this.threadDiameterTextBox_Leave);
+            this.threadDiameterTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // threadDiameterLabel
             // 
@@ -244,7 +244,7 @@ namespace CADSelfTappingScrewUI
             this.threadLengthTextBox.Name = "threadLengthTextBox";
             this.threadLengthTextBox.Size = new System.Drawing.Size(45, 20);
             this.threadLengthTextBox.TabIndex = 7;
-            this.threadLengthTextBox.Leave += new System.EventHandler(this.threadLengthTextBox_Leave);
+            this.threadLengthTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // threadLengthLabel
             // 
@@ -261,7 +261,7 @@ namespace CADSelfTappingScrewUI
             this.threadStepTextBox.Name = "threadStepTextBox";
             this.threadStepTextBox.Size = new System.Drawing.Size(45, 20);
             this.threadStepTextBox.TabIndex = 5;
-            this.threadStepTextBox.Leave += new System.EventHandler(this.threadStepTextBox_Leave);
+            this.threadStepTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // threadStepLabel
             // 
@@ -278,7 +278,7 @@ namespace CADSelfTappingScrewUI
             this.headHightTextBox.Name = "headHightTextBox";
             this.headHightTextBox.Size = new System.Drawing.Size(45, 20);
             this.headHightTextBox.TabIndex = 3;
-            this.headHightTextBox.Leave += new System.EventHandler(this.headHightTextBox_Leave);
+            this.headHightTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // headHightLabel
             // 
@@ -295,7 +295,7 @@ namespace CADSelfTappingScrewUI
             this.rodLengthTextBox.Name = "rodLengthTextBox";
             this.rodLengthTextBox.Size = new System.Drawing.Size(45, 20);
             this.rodLengthTextBox.TabIndex = 1;
-            this.rodLengthTextBox.Leave += new System.EventHandler(this.rodLengthTextBox_Leave);
+            this.rodLengthTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // rodLengthLabel
             // 

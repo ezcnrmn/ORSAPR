@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -282,22 +283,43 @@ namespace CADSelfTappingScrew
             throw new ArgumentException(message, parameterName);
         }
         
-        public double[] GetMaxValues()
+        public static readonly Dictionary<string, double> MaxValues = 
+            new Dictionary<string, double>(8)
         {
-            double[] parametersValues = new double[8] { 9.9, 7, 100, 4.5, 5, 97, 18, 9.9 };
-            return parametersValues;
-        }
+            { "ThreadDiameter", 9.9 },
+            { "InternalThreadDiameter", 7 },
+            { "RodLength", 100 },
+            { "ThreadStep", 4.5 },
+            { "HeadHight",  5 },
+            { "ThreadLength", 97 },
+            { "HeadDiameter", 18 },
+            { "RodDiameter", 9.9 }
+        };
 
-        public double[] GetMinValues()
+        public static readonly Dictionary<string, double> MinValues = 
+            new Dictionary<string, double>(8)
         {
-            double[] parametersValues = new double[8] { 1.61, 1.1, 7, 0.8, 0.96, 3.8, 3, 1.61 };
-            return parametersValues;
-        }
+            { "ThreadDiameter", 1.61 },
+            { "InternalThreadDiameter", 1.1 },
+            { "RodLength", 7 },
+            { "ThreadStep", 0.8 },
+            { "HeadHight",  0.96 },
+            { "ThreadLength", 3.8 },
+            { "HeadDiameter", 3 },
+            { "RodDiameter", 1.61 }
+        };
 
-        public double[] GetDefaultValues()
+        public static readonly Dictionary<string, double> DefaultValues = 
+            new Dictionary<string, double>(8)
         {
-            double[] parametersValues = new double[8] { 7.5, 5, 70, 2.5, 4, 50, 12, 7 };
-            return parametersValues;
-        }
+            { "ThreadDiameter", 7.5},
+            { "InternalThreadDiameter", 5},
+            { "RodLength", 70},
+            { "ThreadStep", 2.5},
+            { "HeadHight",  4},
+            { "ThreadLength", 50 },
+            { "HeadDiameter", 12 },
+            { "RodDiameter", 7}
+        };
     }
 }
