@@ -140,6 +140,7 @@ namespace CADSelfTappingScrewUI
             }
         }
 
+        //TODO: Duplication
         private void threadDiameterTextBox_Leave(object sender, EventArgs e)
         {
             CheckInput(threadDiameterTextBox);
@@ -180,6 +181,7 @@ namespace CADSelfTappingScrewUI
             CheckInput(rodDiameterTextBox);
         }
 
+        //TODO: Должно быть в модели данных
         private void minParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             string[] parametersValues = new string[8] { "1,61", "1,1", "7", "0,8", "0,96", "3,8", "3", "1,61" };
