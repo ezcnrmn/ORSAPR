@@ -7,7 +7,7 @@
     <ProjectGuid>{44796A2E-E3AF-4253-980B-49FA267E708E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>CADSelfTappingScrewUI</RootNamespace>
-    <AssemblyName>CADSelfTappingScrew</AssemblyName>
+    <AssemblyName>CADSelfTappingScrewUI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,30 +48,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Kompas6API2D5COM">
-      <HintPath>..\..\штуки 2\CSharp\Common\Kompas6API2D5COM.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Kompas6API3D5COM">
-      <HintPath>..\..\штуки 2\CSharp\Common\Kompas6API3D5COM.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Kompas6API5">
-      <HintPath>..\..\штуки 2\CSharp\Common\Kompas6API5.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Kompas6Constants">
-      <HintPath>..\..\штуки 2\CSharp\Common\Kompas6Constants.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Kompas6Constants3D">
-      <HintPath>..\..\штуки 2\CSharp\Common\Kompas6Constants3D.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="KompasAPI7">
-      <HintPath>..\..\штуки 2\CSharp\Common\KompasAPI7.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -145,4 +121,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
 </Project>

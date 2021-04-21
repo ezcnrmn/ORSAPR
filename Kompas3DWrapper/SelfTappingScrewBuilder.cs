@@ -43,25 +43,25 @@ namespace KompasWrapper
             
 
             // расчеты длины уклона
-            double angle20 = 20 * Math.PI / 180;
-            double angle70 = 70 * Math.PI / 180;
+            double angle20Radians = 20 * Math.PI / 180;
+            double angle70Radians = 70 * Math.PI / 180;
 
             double slopeLength =
                 (selfTappingScrewParameters.RodDiameter - selfTappingScrewParameters.InternalThreadDiameter) *
-                Math.Sin(angle70) / Math.Sin(angle20);
+                Math.Sin(angle70Radians) / Math.Sin(angle20Radians);
 
             // расчет длины кончика
-            double angle15 = 15 * Math.PI / 180;
-            double angle75 = 75 * Math.PI / 180;
-            double tipLength = selfTappingScrewParameters.InternalThreadDiameter / 2 * Math.Sin(angle75) /
-                               Math.Sin(angle15);
+            double angle15Radians = 15 * Math.PI / 180;
+            double angle75Radians = 75 * Math.PI / 180;
+            double tipLength = selfTappingScrewParameters.InternalThreadDiameter / 2 * Math.Sin(angle75Radians) /
+                               Math.Sin(angle15Radians);
             DrawRod(selfTappingScrewParameters, iDefinitionSketch2, slopeLength, tipLength);
             
             RotationOperation(kompas3DWrapper, iSketch2, iDefinitionSketch2);
 
             // расчет длины и радиуса кончика
             double tipLength2 = tipLength * 2 / 3;
-            double tipRadius = tipLength2 * Math.Sin(angle15) / Math.Sin(angle75);
+            double tipRadius = tipLength2 * Math.Sin(angle15Radians) / Math.Sin(angle75Radians);
             MakeThread(kompas3DWrapper, selfTappingScrewParameters, slopeLength, tipLength, tipLength2 / 2, tipRadius);
         }
 

@@ -6,7 +6,7 @@ namespace CADSelfTappingScrew.UnitTests
     [TestFixture]
     public class SelfTappingScrewParametersTest
     {
-        [TestCase(TestName = "blabla")]
+        [TestCase(TestName = "Тест на корректное значение Диаметра головки")]
         public void HeadDiameter_CorrectValue_ReturnsSameValue()
         {
             //Setup
@@ -22,7 +22,7 @@ namespace CADSelfTappingScrew.UnitTests
             NUnit.Framework.Assert.AreEqual(expectedValue, actualValue);
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Диаметра головки")]
         public void HeadDiameter_OutOfRangeValue_ThrowsException()
         {
             //Setup
@@ -40,7 +40,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Диаметра головки")]
         public void HeadDiameter_OutOfDependentParameterRange_ThrowsException()
         {
             //Setup
@@ -59,7 +59,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на корректное значение Высоты головки")]
         public void HeadHight_CorrectValue_ReturnsSameValue()
         {
             //Setup
@@ -75,7 +75,7 @@ namespace CADSelfTappingScrew.UnitTests
             NUnit.Framework.Assert.AreEqual(expectedValue, actualValue);
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Высоты головки")]
         public void HeadHight_OutOfRangeValue_ThrowsException()
         {
             //Setup
@@ -93,7 +93,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на корректное значение Внутреннего диаметра резьбы")]
         public void InternalThreadDiameter_CorrectValue_ReturnsSameValue()
         {
             //Setup
@@ -109,7 +109,7 @@ namespace CADSelfTappingScrew.UnitTests
             NUnit.Framework.Assert.AreEqual(expectedValue, actualValue);
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Внутреннего диаметра резьбы")]
         public void InternalThreadDiameter_OutOfRangeValue_ThrowsException()
         {
             //Setup
@@ -127,7 +127,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Внутреннего диаметра резьбы")]
         public void InternalThreadDiameter_OutOfDependentParameterRange_ThrowsException()
         {
             //Setup
@@ -148,7 +148,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на корректное значение Диаметра резьбы")]
         public void RodDiameter_CorrectValue_ReturnsSameValue()
         {
             //Setup
@@ -164,7 +164,7 @@ namespace CADSelfTappingScrew.UnitTests
             NUnit.Framework.Assert.AreEqual(expectedValue, actualValue);
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Диаметра резьбы")]
         public void RodDiameter_OutOfRangeValue_ThrowsException()
         {
             //Setup
@@ -182,7 +182,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Диаметра резьбы")]
         public void RodDiameter_OutOfDependentParameter1Range_ThrowsException()
         {
             //Setup
@@ -201,7 +201,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Диаметра резьбы")]
         public void RodDiameter_OutOfDependentParameter2Range_ThrowsException()
         {
             //Setup
@@ -220,7 +220,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на корректное значение Длины резьбы")]
         public void RodLength_CorrectValue_ReturnsSameValue()
         {
             //Setup
@@ -236,7 +236,7 @@ namespace CADSelfTappingScrew.UnitTests
             NUnit.Framework.Assert.AreEqual(expectedValue, actualValue);
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Длины резьбы")]
         public void RodLength_OutOfRangeValue_ThrowsException()
         {
             //Setup
@@ -254,7 +254,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Длины резьбы")]
         public void RodLength_OutOfDependentParameterRange_ThrowsException()
         {
             //Setup
@@ -273,7 +273,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на корректное значение Диаметра резьбы")]
         public void ThreadDiameter_CorrectValue_ReturnsSameValue()
         {
             //Setup
@@ -289,7 +289,7 @@ namespace CADSelfTappingScrew.UnitTests
             NUnit.Framework.Assert.AreEqual(expectedValue, actualValue);
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Диаметра резьбы")]
         public void ThreadDiameter_OutOfRangeValue_ThrowsException()
         {
             //Setup
@@ -307,7 +307,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Диаметра резьбы")]
         public void ThreadDiameter_OutOfDependentParameter1Range_ThrowsException()
         {
             //Setup
@@ -326,7 +326,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Диаметра резьбы")]
         public void ThreadDiameter_OutOfDependentParameter2Range_ThrowsException()
         {
             //Setup
@@ -345,7 +345,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на корректное значение Длины резьбы")]
         public void ThreadLength_CorrectValue_ReturnsSameValue()
         {
             //Setup
@@ -361,7 +361,7 @@ namespace CADSelfTappingScrew.UnitTests
             NUnit.Framework.Assert.AreEqual(expectedValue, actualValue);
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Длины резьбы")]
         public void ThreadLength_OutOfRangeValue_ThrowsException()
         {
             //Setup
@@ -379,7 +379,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Длины резьбы")]
         public void ThreadLength_OutOfDependentParameterRange_ThrowsException()
         {
             //Setup
@@ -398,7 +398,7 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на корректное значение Шаг резьбы")]
         public void ThreadStep_CorrectValue_ReturnsSameValue()
         {
             //Setup
@@ -414,7 +414,7 @@ namespace CADSelfTappingScrew.UnitTests
             NUnit.Framework.Assert.AreEqual(expectedValue, actualValue);
         }
 
-        [Test]
+        [TestCase(TestName = "Тест на некорректное значение Шаг резьбы")]
         public void ThreadStep_OutOfRangeValue_ThrowsException()
         {
             //Setup

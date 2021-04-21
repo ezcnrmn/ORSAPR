@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CADSelfTappingScrew;
 using KompasWrapper;
-using Kompas6API5;
 
 namespace CADSelfTappingScrewUI
 {
@@ -19,7 +18,8 @@ namespace CADSelfTappingScrewUI
         /// <summary>
         /// Словарь корректно введенных значений для каждого текстового поля
         /// </summary>
-        Dictionary<string, bool> buildEnableDict = new Dictionary<string, bool>(8);
+        Dictionary<string, bool> buildEnableDict 
+            = new Dictionary<string, bool>(8);
         
         /// <summary>
         /// Главная форма
@@ -83,8 +83,10 @@ namespace CADSelfTappingScrewUI
                     buildEnableDict[textBox.Name] = false;
                     textBox.BackColor = Color.Salmon;
 
-                    string errorMessage = "Значение в текстовом поле должно быть числом!\nДесятичный разделитель - только \"запятая\"!";
-                    MessageBox.Show(errorMessage, "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    string errorMessage = "Значение в текстовом поле должно быть числом!" +
+                                          "\nДесятичный разделитель - только \"запятая\"!";
+                    MessageBox.Show(errorMessage, "Внимание!", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
             }
@@ -106,23 +108,33 @@ namespace CADSelfTappingScrewUI
             {
                 try
                 {
-                    SelfTappingScrewParameters selfTappingScrewParameters = new SelfTappingScrewParameters();
+                    SelfTappingScrewParameters selfTappingScrewParameters 
+                        = new SelfTappingScrewParameters();
                     
-                    selfTappingScrewParameters.HeadDiameter = double.Parse(headDiameterTextBox.Text);
-                    selfTappingScrewParameters.HeadHight = double.Parse(headHightTextBox.Text);
-                    selfTappingScrewParameters.RodLength = double.Parse(rodLengthTextBox.Text);
-                    selfTappingScrewParameters.ThreadLength = double.Parse(threadLengthTextBox.Text);
-                    selfTappingScrewParameters.ThreadDiameter = double.Parse(threadDiameterTextBox.Text);
-                    selfTappingScrewParameters.ThreadStep = double.Parse(threadStepTextBox.Text);
-                    selfTappingScrewParameters.RodDiameter = double.Parse(rodDiameterTextBox.Text);
+                    selfTappingScrewParameters.HeadDiameter 
+                        = double.Parse(headDiameterTextBox.Text);
+                    selfTappingScrewParameters.HeadHight 
+                        = double.Parse(headHightTextBox.Text);
+                    selfTappingScrewParameters.RodLength 
+                        = double.Parse(rodLengthTextBox.Text);
+                    selfTappingScrewParameters.ThreadLength 
+                        = double.Parse(threadLengthTextBox.Text);
+                    selfTappingScrewParameters.ThreadDiameter 
+                        = double.Parse(threadDiameterTextBox.Text);
+                    selfTappingScrewParameters.ThreadStep 
+                        = double.Parse(threadStepTextBox.Text);
+                    selfTappingScrewParameters.RodDiameter 
+                        = double.Parse(rodDiameterTextBox.Text);
                     selfTappingScrewParameters.InternalThreadDiameter =
                         double.Parse(internalThreadDiameterTextBox.Text);
                     
                     Kompas3DWrapper kompas3DWrapper = new Kompas3DWrapper();
                     kompas3DWrapper.OpenKompas();
 
-                    SelfTappingScrewBuilder selfTappingScrewBuilder = new SelfTappingScrewBuilder();
-                    selfTappingScrewBuilder.BuildSelfTappingScrew(kompas3DWrapper, selfTappingScrewParameters);
+                    SelfTappingScrewBuilder selfTappingScrewBuilder 
+                        = new SelfTappingScrewBuilder();
+                    selfTappingScrewBuilder.BuildSelfTappingScrew(kompas3DWrapper, 
+                        selfTappingScrewParameters);
                 }
                 catch (ArgumentException a)
                 {
@@ -130,13 +142,15 @@ namespace CADSelfTappingScrewUI
                     string textBoxName = parameterName + "TextBox";
                     Control[] erroredTextBox = this.Controls.Find(textBoxName, true);
                     erroredTextBox[0].BackColor = Color.Salmon;
-                    MessageBox.Show(a.Message.Split('\n')[0], "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(a.Message.Split('\n')[0], "Внимание!",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
                 string errorMessage = "Необходимо заполнить все поля!";
-                MessageBox.Show(errorMessage, "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errorMessage, "Внимание!", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

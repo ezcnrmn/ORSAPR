@@ -63,9 +63,10 @@ namespace CADSelfTappingScrew
                 double min = 3.0;
                 double max = 18.0;
                  //TODO: RSDN
-                double dependentParameter =
-                    (InternalThreadDiameter < ThreadDiameter) ? ThreadDiameter : InternalThreadDiameter;
-                dependentParameter = (dependentParameter < RodDiameter) ? RodDiameter : dependentParameter;
+                double dependentParameter = (InternalThreadDiameter < ThreadDiameter) ? 
+                    ThreadDiameter : InternalThreadDiameter;
+                dependentParameter = (dependentParameter < RodDiameter) ? 
+                    RodDiameter : dependentParameter;
                 string parameterName = "Внутренний диаметр головки (D)";
 
                 if (min <= value && value <= max && value > dependentParameter)
@@ -74,18 +75,8 @@ namespace CADSelfTappingScrew
                 }
                 else
                 {
-                    string message;
-                    if (dependentParameter > min)
-                    {
-                        message = "Размер параметра \"" + parameterName + "\" должен быть строго больше " +
-                                  dependentParameter + " мм и не больше " + max + " мм!";
-                    }
-                    else
-                    {
-                        message = "Размер параметра \"" + parameterName + "\" должен быть не меньше " + min +
-                                  " мм и не больше " + max + " мм!";
-                    }
-                    throw new ArgumentException(message, "HeadDiameter");
+                    ThrowExceptionWithAMessage(parameterName, min, 
+                        max, "HeadDiameter");
                 }
             }
         }
@@ -109,10 +100,9 @@ namespace CADSelfTappingScrew
                 }
                 else
                 {
-                     //TODO: RSDN
-                    string message = "Размер параметра \"" + parameterName + "\" должен быть не меньше " + min +
-                                     " мм и не больше " + max + " мм!";
-                    throw new ArgumentException(message, "HeadHight");
+                    //TODO: RSDN
+                    ThrowExceptionWithAMessage(parameterName, min, 
+                        max, "HeadHight");
                 }
             }
         }
@@ -128,28 +118,21 @@ namespace CADSelfTappingScrew
             {
                 double min = 1.1;
                 double max = 7.0;
-                double dependentParameter = (ThreadDiameter < HeadDiameter)? ThreadDiameter : HeadDiameter;
-                dependentParameter = (dependentParameter < RodDiameter) ? dependentParameter : RodDiameter;
+                double dependentParameter = (ThreadDiameter < HeadDiameter)? 
+                    ThreadDiameter : HeadDiameter;
+                dependentParameter = (dependentParameter < RodDiameter) ? 
+                    dependentParameter : RodDiameter;
                 string parameterName = "Внутренний диаметр резьбы (d2)";
 
-                if (min <= value && value <= max && (value < dependentParameter || dependentParameter == 0))
+                if (min <= value && value <= max && (value < dependentParameter || 
+                                                     dependentParameter == 0))
                 {
                     _internalThreadDiameter = value;
                 }
                 else
                 {
-                    string message;
-                    if (dependentParameter > max)
-                    {
-                        message = "Размер параметра \"" + parameterName + "\" должен быть не меньше " + min +
-                                  " мм и не больше " + max + " мм!";
-                    }
-                    else
-                    {
-                        message = "Размер параметра \"" + parameterName + "\" должен быть не меньше " + min +
-                                  " мм и строго меньше " + dependentParameter + " мм!";
-                    }
-                    throw new ArgumentException(message, "InternalThreadDiameter");
+                    ThrowExceptionWithAMessage(parameterName, min, 
+                        max, "InternalThreadDiameter");
                 }
             }
         }
@@ -165,8 +148,10 @@ namespace CADSelfTappingScrew
             {
                 double min = 1.6;
                 double max = 10.0;
-                double dependentParameter1 = (InternalThreadDiameter < min) ? min : InternalThreadDiameter;
-                double dependentParameter2 = (HeadDiameter < max && HeadDiameter != 0) ? HeadDiameter : max;
+                double dependentParameter1 = (InternalThreadDiameter < min) ? min :
+                    InternalThreadDiameter;
+                double dependentParameter2 = (HeadDiameter < max && HeadDiameter != 0)?
+                    HeadDiameter : max;
                 string parameterName = "Общий диаметр стержня (d1)";
 
                 if (dependentParameter1 < value && value < dependentParameter2)
@@ -175,9 +160,8 @@ namespace CADSelfTappingScrew
                 }
                 else
                 {
-                    string message = "Размер параметра \"" + parameterName + "\" должен быть не меньше " +
-                                     dependentParameter1 + " мм и строго меньше " + dependentParameter2 + " мм!";
-                    throw new ArgumentException(message, "RodDiameter");
+                    ThrowExceptionWithAMessage(parameterName, min, 
+                        max, "RodDiameter");
                 }
             }
         }
@@ -202,18 +186,8 @@ namespace CADSelfTappingScrew
                 }
                 else
                 {
-                    string message;
-                    if (dependentParameter > min)
-                    {
-                        message = "Размер параметра \"" + parameterName + "\" должен быть строго больше " +
-                                  dependentParameter + " мм и не больше " + max + " мм!";
-                    }
-                    else
-                    {
-                        message = "Размер параметра \"" + parameterName + "\" должен быть не меньше " + min +
-                                  " мм и не больше " + max + " мм!";
-                    }
-                    throw new ArgumentException(message, "RodLength");
+                    ThrowExceptionWithAMessage(parameterName, min, 
+                        max, "RodLength");
                 }
             }
         }
@@ -229,19 +203,21 @@ namespace CADSelfTappingScrew
             {
                 double min = 1.6;
                 double max = 10.0;
-                double dependentParameter1 = (InternalThreadDiameter < min)? min : InternalThreadDiameter;
-                double dependentParameter2 = (HeadDiameter < max && HeadDiameter != 0)? HeadDiameter : max;
+                double dependentParameter1 = (InternalThreadDiameter < min)? min : 
+                    InternalThreadDiameter;
+                double dependentParameter2 = (HeadDiameter < max && HeadDiameter != 0)? 
+                    HeadDiameter : max;
                 string parameterName = "Диаметр резьбы (d)";
 
-                if (dependentParameter1 < value && value < dependentParameter2 || dependentParameter2 == 0)
+                if (dependentParameter1 < value && value < dependentParameter2 || 
+                    dependentParameter2 == 0)
                 {
                     _threadDiameter = value;
                 }
                 else
                 {
-                    string message = "Размер параметра \"" + parameterName + "\" должен быть строго больше " +
-                                     dependentParameter1 + " мм и строго меньше " + dependentParameter2 + " мм!";
-                    throw new ArgumentException(message, "ThreadDiameter");
+                    ThrowExceptionWithAMessage(parameterName, min, 
+                        max, "ThreadDiameter");
                 }
             }
         }
@@ -260,26 +236,15 @@ namespace CADSelfTappingScrew
                 double dependentParameter = RodLength;
                 string parameterName = "Длина части стержня с резьбой (b)";
 
-                if (min <= value && value <= max && (value < dependentParameter || dependentParameter == 0) && value >= dependentParameter * 0.3)
+                if (min <= value && value <= max && (value < dependentParameter || 
+                    dependentParameter == 0) && value >= dependentParameter * 0.3)
                 {
                     _threadLength = value;
                 }
                 else
                 {
-                    string message;
-                    if (dependentParameter > max)
-                    {
-                        message = "Размер параметра \"" + parameterName + "\" должен быть не меньше " + min +
-                                  " мм и не больше " + max +
-                                  " мм, и составлять как минимум 30% от общей длины стержня!";
-                    }
-                    else
-                    {
-                        message = "Размер параметра \"" + parameterName + "\" должен быть не меньше " + min +
-                                  " мм и строго меньше " + dependentParameter +
-                                  " мм, и составлять как минимум 30% от общей длины стержня!";
-                    }
-                    throw new ArgumentException(message, "ThreadLength");
+                    ThrowExceptionWithAMessage(parameterName, min, 
+                        max, "ThreadLength");
                 }
             }
         }
@@ -303,11 +268,36 @@ namespace CADSelfTappingScrew
                 }
                 else
                 {
-                    string message = "Размер параметра \"" + parameterName + "\" должен быть не меньше " + min +
-                                     " мм и не больше " + max + " мм!";
-                    throw new ArgumentException(message, "ThreadStep");
+                    ThrowExceptionWithAMessage(parameterName, min, 
+                        max, "ThreadStep");
                 }
             }
+        }
+
+        private void ThrowExceptionWithAMessage(string parameterNameRus, 
+            double min, double max, string parameterName)
+        {
+            string message = "Размер параметра \"" + parameterNameRus +
+                             "\" должен быть между " + min + " и " + max + " мм!";
+            throw new ArgumentException(message, parameterName);
+        }
+        
+        public double[] GetMaxValues()
+        {
+            double[] parametersValues = new double[8] { 9.9, 7, 100, 4.5, 5, 97, 18, 9.9 };
+            return parametersValues;
+        }
+
+        public double[] GetMinValues()
+        {
+            double[] parametersValues = new double[8] { 1.61, 1.1, 7, 0.8, 0.96, 3.8, 3, 1.61 };
+            return parametersValues;
+        }
+
+        public double[] GetDefaultValues()
+        {
+            double[] parametersValues = new double[8] { 7.5, 5, 70, 2.5, 4, 50, 12, 7 };
+            return parametersValues;
         }
     }
 }
