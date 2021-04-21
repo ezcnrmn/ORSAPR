@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using NUnit.Framework;
 
 namespace CADSelfTappingScrew.UnitTests
@@ -7,7 +6,7 @@ namespace CADSelfTappingScrew.UnitTests
     [TestFixture]
     public class SelfTappingScrewParametersTest
     {
-        [Test]
+        [TestCase(TestName = "blabla")]
         public void HeadDiameter_CorrectValue_ReturnsSameValue()
         {
             //Setup

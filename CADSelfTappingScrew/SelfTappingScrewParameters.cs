@@ -62,6 +62,7 @@ namespace CADSelfTappingScrew
             {
                 double min = 3.0;
                 double max = 18.0;
+                 //TODO: RSDN
                 double dependentParameter =
                     (InternalThreadDiameter < ThreadDiameter) ? ThreadDiameter : InternalThreadDiameter;
                 dependentParameter = (dependentParameter < RodDiameter) ? RodDiameter : dependentParameter;
@@ -108,6 +109,7 @@ namespace CADSelfTappingScrew
                 }
                 else
                 {
+                     //TODO: RSDN
                     string message = "Размер параметра \"" + parameterName + "\" должен быть не меньше " + min +
                                      " мм и не больше " + max + " мм!";
                     throw new ArgumentException(message, "HeadHight");

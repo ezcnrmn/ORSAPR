@@ -41,12 +41,15 @@ namespace KompasWrapper
             iDefinitionSketch2.SetPlane(planeYoz);
             iSketch2.Create();
             
+
             // расчеты длины уклона
             double angle20 = 20 * Math.PI / 180;
             double angle70 = 70 * Math.PI / 180;
+
             double slopeLength =
                 (selfTappingScrewParameters.RodDiameter - selfTappingScrewParameters.InternalThreadDiameter) *
                 Math.Sin(angle70) / Math.Sin(angle20);
+
             // расчет длины кончика
             double angle15 = 15 * Math.PI / 180;
             double angle75 = 75 * Math.PI / 180;
@@ -74,8 +77,10 @@ namespace KompasWrapper
             // расчет параметров треугольничка
             double triangleBase = parameters.ThreadStep / 2;
             
-            rodDocument2D.ksLineSeg(parameters.InternalThreadDiameter / 2, parameters.RodLength - tipLength,
-                parameters.ThreadDiameter / 2, parameters.RodLength - tipLength - triangleBase / 2, 1);
+            rodDocument2D.ksLineSeg(parameters.InternalThreadDiameter / 2, 
+                parameters.RodLength - tipLength,
+                parameters.ThreadDiameter / 2, 
+                parameters.RodLength - tipLength - triangleBase / 2, 1);
             rodDocument2D.ksLineSeg(parameters.ThreadDiameter / 2, parameters.RodLength - tipLength - triangleBase / 2,
                 parameters.InternalThreadDiameter / 2, parameters.RodLength - tipLength - triangleBase, 1);
             rodDocument2D.ksLineSeg(parameters.InternalThreadDiameter / 2,
