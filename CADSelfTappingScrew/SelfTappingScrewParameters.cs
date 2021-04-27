@@ -83,11 +83,14 @@ namespace CADSelfTappingScrew
                 {
                     if (dependentParameter > min)
                     {
-                        ThrowExceptionWithAMessage(parameterName, dependentParameter, max, "HeadDiameter");
+                        ThrowExceptionWithAMessage(parameterName, 
+                            dependentParameter, max, 
+                            ParametersName.HeadDiameter);
                     }
                     else
                     {
-                        ThrowExceptionWithAMessage(parameterName, min, max, "HeadDiameter");
+                        ThrowExceptionWithAMessage(parameterName, min, max, 
+                            ParametersName.HeadDiameter);
                     }
                     
                 }
@@ -113,7 +116,7 @@ namespace CADSelfTappingScrew
                     return;
                 }
                 ThrowExceptionWithAMessage(parameterName, min, 
-                    max, "HeadHight");
+                    max, ParametersName.HeadHight);
             }
         }
 
@@ -143,11 +146,14 @@ namespace CADSelfTappingScrew
                 {
                     if (dependentParameter > max)
                     {
-                        ThrowExceptionWithAMessage(parameterName, min, max, "InternalThreadDiameter");
+                        ThrowExceptionWithAMessage(parameterName, min, max,
+                            ParametersName.InternalThreadDiameter);
                     }
                     else
                     {
-                        ThrowExceptionWithAMessage(parameterName, min, dependentParameter, "InternalThreadDiameter");
+                        ThrowExceptionWithAMessage(parameterName, min, 
+                            dependentParameter, 
+                            ParametersName.InternalThreadDiameter);
                     }
                 }
             }
@@ -176,7 +182,8 @@ namespace CADSelfTappingScrew
                 }
                 else
                 {
-                    ThrowExceptionWithAMessage(parameterName, dependentParameter1, dependentParameter2, "RodDiameter");
+                    ThrowExceptionWithAMessage(parameterName, dependentParameter1,
+                        dependentParameter2, ParametersName.RodDiameter);
                 }
             }
         }
@@ -203,11 +210,14 @@ namespace CADSelfTappingScrew
                 {
                     if (dependentParameter > min)
                     {
-                        ThrowExceptionWithAMessage(parameterName, dependentParameter, max, "RodLength");
+                        ThrowExceptionWithAMessage(parameterName, 
+                            dependentParameter, max,
+                            ParametersName.RodLength);
                     }
                     else
                     {
-                        ThrowExceptionWithAMessage(parameterName, min, max, "RodLength");
+                        ThrowExceptionWithAMessage(parameterName, min, 
+                            max, ParametersName.RodLength);
                     }
                 }
             }
@@ -237,7 +247,8 @@ namespace CADSelfTappingScrew
                 }
                 else
                 {
-                    ThrowExceptionWithAMessage(parameterName, dependentParameter1, dependentParameter2, "ThreadDiameter");
+                    ThrowExceptionWithAMessage(parameterName, dependentParameter1,
+                        dependentParameter2, ParametersName.ThreadDiameter);
                 }
             }
         }
@@ -265,11 +276,14 @@ namespace CADSelfTappingScrew
                 {
                     if (dependentParameter > max)
                     {
-                        ThrowExceptionWithAMessage(parameterName, min, max, "ThreadLength");
+                        ThrowExceptionWithAMessage(parameterName, min, max, 
+                            ParametersName.ThreadLength);
                     }
                     else
                     {
-                        ThrowExceptionWithAMessage(parameterName, min, dependentParameter, "ThreadLength");
+                        ThrowExceptionWithAMessage(parameterName, min, 
+                            dependentParameter, 
+                            ParametersName.ThreadLength);
                     }
                 }
             }
@@ -295,7 +309,7 @@ namespace CADSelfTappingScrew
                 else
                 {
                     ThrowExceptionWithAMessage(parameterName, min, 
-                        max, "ThreadStep");
+                        max, ParametersName.ThreadStep);
                 }
             }
         }
@@ -304,7 +318,7 @@ namespace CADSelfTappingScrew
         /// Свойство наличия шайбы
         /// </summary>
         public bool Washer { get; set; }
-        
+
         /// <summary>
         /// Функция выбрасывания исключения с заданными параметрами
         /// </summary>
@@ -313,52 +327,76 @@ namespace CADSelfTappingScrew
         /// <param name="max">Максимальная граница</param>
         /// <param name="parameterName">Название параметра</param>
         private void ThrowExceptionWithAMessage(string parameterNameRus, 
-            double min, double max, string parameterName)
+            double min, double max, Enum parameterName)
         {
             string message = "Размер параметра \"" + parameterNameRus +
                              "\" должен быть между " + min + " и " + max + " мм!";
-            throw new ArgumentException(message, parameterName);
+            throw new ArgumentException(message, parameterName.ToString());
+        }
+
+        /// <summary>
+        /// Перечесление названий параметров
+        /// </summary>
+        public enum ParametersName
+        {
+            ThreadDiameter,
+            InternalThreadDiameter,
+            RodLength,
+            ThreadStep,
+            HeadHight,
+            ThreadLength,
+            HeadDiameter,
+            RodDiameter
         }
         
         //TODO: строковые ключи переделать на перечисления.
         //TODO: XML комментарии?
-        public static readonly Dictionary<string, double> MaxValues = 
-            new Dictionary<string, double>(8)
+        /// <summary>
+        /// Словарь максимальных значений
+        /// </summary>
+        public static readonly Dictionary<Enum, double> MaxValues = 
+            new Dictionary<Enum, double>(8)
         {
-            { "ThreadDiameter", 9.9 },
-            { "InternalThreadDiameter", 7 },
-            { "RodLength", 100 },
-            { "ThreadStep", 4.5 },
-            { "HeadHight",  5 },
-            { "ThreadLength", 97 },
-            { "HeadDiameter", 18 },
-            { "RodDiameter", 9.9 }
+            { ParametersName.ThreadDiameter, 9.9 },
+            { ParametersName.InternalThreadDiameter, 7 },
+            { ParametersName.RodLength, 100 },
+            { ParametersName.ThreadStep, 4.5 },
+            { ParametersName.HeadHight,  5 },
+            { ParametersName.ThreadLength, 97 },
+            { ParametersName.HeadDiameter, 18 },
+            { ParametersName.RodDiameter, 9.9 }
         };
 
-        public static readonly Dictionary<string, double> MinValues = 
-            new Dictionary<string, double>(8)
+        /// <summary>
+        /// Словарь минимальных значений
+        /// </summary>
+        public static readonly Dictionary<Enum, double> MinValues = 
+            new Dictionary<Enum, double>(8)
         {
-            { "ThreadDiameter", 1.61 },
-            { "InternalThreadDiameter", 1.1 },
-            { "RodLength", 7 },
-            { "ThreadStep", 0.8 },
-            { "HeadHight",  0.96 },
-            { "ThreadLength", 3.8 },
-            { "HeadDiameter", 3 },
-            { "RodDiameter", 1.61 }
+            { ParametersName.ThreadDiameter, 1.61 },
+            { ParametersName.InternalThreadDiameter, 1.1 },
+            { ParametersName.RodLength, 7 },
+            { ParametersName.ThreadStep, 0.8 },
+            { ParametersName.HeadHight,  0.96 },
+            { ParametersName.ThreadLength, 3.8 },
+            { ParametersName.HeadDiameter, 3 },
+            { ParametersName.RodDiameter, 1.61 }
         };
 
-        public static readonly Dictionary<string, double> DefaultValues = 
-            new Dictionary<string, double>(8)
+        /// <summary>
+        /// Словарь значений по-умолчанию
+        /// </summary>
+        public static readonly Dictionary<Enum, double> DefaultValues = 
+            new Dictionary<Enum, double>(8)
         {
-            { "ThreadDiameter", 7.5},
-            { "InternalThreadDiameter", 5},
-            { "RodLength", 70},
-            { "ThreadStep", 2.5},
-            { "HeadHight",  4},
-            { "ThreadLength", 50 },
-            { "HeadDiameter", 12 },
-            { "RodDiameter", 7}
+            { ParametersName.ThreadDiameter, 7.5},
+            { ParametersName.InternalThreadDiameter, 5},
+            { ParametersName.RodLength, 70},
+            { ParametersName.ThreadStep, 2.5},
+            { ParametersName.HeadHight,  4},
+            { ParametersName.ThreadLength, 50 },
+            { ParametersName.HeadDiameter, 12 },
+            { ParametersName.RodDiameter, 7}
         };
     }
 }

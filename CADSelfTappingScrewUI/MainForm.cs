@@ -163,10 +163,13 @@ namespace CADSelfTappingScrewUI
                 {
                     string parameterName = a.ParamName;
                     string textBoxName = parameterName + "TextBox";
-                    Control[] erroredTextBox = this.Controls.Find(textBoxName, true);
+                    Control[] erroredTextBox = this.Controls.Find(textBoxName,
+                        true);
                     erroredTextBox[0].BackColor = Color.Salmon;
-                    MessageBox.Show(a.Message.Split('\n')[0], "Внимание!",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(a.Message.Split('\n')[0],
+                        "Внимание!",
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                 }
             }
             else
@@ -194,14 +197,14 @@ namespace CADSelfTappingScrewUI
         {
             string[] parametersValues = new string[8]
             {
-                SelfTappingScrewParameters.MinValues["ThreadDiameter"].ToString(),
-                SelfTappingScrewParameters.MinValues["InternalThreadDiameter"].ToString(),
-                SelfTappingScrewParameters.MinValues["RodLength"].ToString(),
-                SelfTappingScrewParameters.MinValues["ThreadStep"].ToString(),
-                SelfTappingScrewParameters.MinValues["HeadHight"].ToString(),
-                SelfTappingScrewParameters.MinValues["ThreadLength"].ToString(),
-                SelfTappingScrewParameters.MinValues["HeadDiameter"].ToString(),
-                SelfTappingScrewParameters.MinValues["RodDiameter"].ToString()
+                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.ThreadDiameter].ToString(),
+                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.InternalThreadDiameter].ToString(),
+                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.RodLength].ToString(),
+                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.ThreadStep].ToString(),
+                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.HeadHight].ToString(),
+                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.ThreadLength].ToString(),
+                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.HeadDiameter].ToString(),
+                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.RodDiameter].ToString()
             };
 
             SetParameters(parametersValues, true);
@@ -215,14 +218,14 @@ namespace CADSelfTappingScrewUI
         {
             string[] parametersValues = new string[8]
             {
-                SelfTappingScrewParameters.DefaultValues["ThreadDiameter"].ToString(),
-                SelfTappingScrewParameters.DefaultValues["InternalThreadDiameter"].ToString(),
-                SelfTappingScrewParameters.DefaultValues["RodLength"].ToString(),
-                SelfTappingScrewParameters.DefaultValues["ThreadStep"].ToString(),
-                SelfTappingScrewParameters.DefaultValues["HeadHight"].ToString(),
-                SelfTappingScrewParameters.DefaultValues["ThreadLength"].ToString(),
-                SelfTappingScrewParameters.DefaultValues["HeadDiameter"].ToString(),
-                SelfTappingScrewParameters.DefaultValues["RodDiameter"].ToString()
+                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.ThreadDiameter].ToString(),
+                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.InternalThreadDiameter].ToString(),
+                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.RodLength].ToString(),
+                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.ThreadStep].ToString(),
+                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.HeadHight].ToString(),
+                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.ThreadLength].ToString(),
+                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.HeadDiameter].ToString(),
+                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.RodDiameter].ToString()
             };
             
             SetParameters(parametersValues, true);
@@ -236,14 +239,14 @@ namespace CADSelfTappingScrewUI
         {
             string[] parametersValues = new string[8]
             {
-                SelfTappingScrewParameters.MaxValues["ThreadDiameter"].ToString(),
-                SelfTappingScrewParameters.MaxValues["InternalThreadDiameter"].ToString(),
-                SelfTappingScrewParameters.MaxValues["RodLength"].ToString(),
-                SelfTappingScrewParameters.MaxValues["ThreadStep"].ToString(),
-                SelfTappingScrewParameters.MaxValues["HeadHight"].ToString(),
-                SelfTappingScrewParameters.MaxValues["ThreadLength"].ToString(),
-                SelfTappingScrewParameters.MaxValues["HeadDiameter"].ToString(),
-                SelfTappingScrewParameters.MaxValues["RodDiameter"].ToString()
+                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.ThreadDiameter].ToString(),
+                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.InternalThreadDiameter].ToString(),
+                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.RodLength].ToString(),
+                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.ThreadStep].ToString(),
+                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.HeadHight].ToString(),
+                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.ThreadLength].ToString(),
+                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.HeadDiameter].ToString(),
+                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.RodDiameter].ToString()
             };
             
             SetParameters(parametersValues, true);
