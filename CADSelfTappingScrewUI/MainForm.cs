@@ -34,46 +34,6 @@ namespace CADSelfTappingScrewUI
         }
 
         /// <summary>
-        /// Функция установки параметров в поля параметров
-        /// </summary>
-        /// <param name="parameters">Массив параметров </param>
-        /// <param name="enable">Значение в buildEnableDict</param>
-        private void SetParameters(string[] parameters, bool enable)
-        {
-            threadDiameterTextBox.Text = parameters[0];
-            threadDiameterTextBox.BackColor = Color.White;
-            buildEnableDict["threadDiameterTextBox"] = enable;
-            
-            internalThreadDiameterTextBox.Text = parameters[1];
-            internalThreadDiameterTextBox.BackColor = Color.White;
-            buildEnableDict["internalThreadDiameterTextBox"] = enable;
-            
-            rodLengthTextBox.Text = parameters[2];
-            rodLengthTextBox.BackColor = Color.White;
-            buildEnableDict["rodLengthTextBox"] = enable;
-
-            threadStepTextBox.Text = parameters[3];
-            threadStepTextBox.BackColor = Color.White;
-            buildEnableDict["threadStepTextBox"] = enable;
-            
-            headHightTextBox.Text = parameters[4];
-            headHightTextBox.BackColor = Color.White;
-            buildEnableDict["headHightTextBox"] = enable;
-            
-            threadLengthTextBox.Text = parameters[5];
-            threadLengthTextBox.BackColor = Color.White;
-            buildEnableDict["threadLengthTextBox"] = enable;
-            
-            headDiameterTextBox.Text = parameters[6];
-            headDiameterTextBox.BackColor = Color.White;
-            buildEnableDict["headDiameterTextBox"] = enable;
-            
-            rodDiameterTextBox.Text = parameters[7];
-            rodDiameterTextBox.BackColor = Color.White;
-            buildEnableDict["rodDiameterTextBox"] = enable;
-        }
-        
-        /// <summary>
         /// Функция проверки ввода данных на возможность преорбразования в double
         /// При невозможности меняет цвет поля на красный и выдает сообщение об ошибке
         /// </summary>
@@ -188,6 +148,40 @@ namespace CADSelfTappingScrewUI
         {
             CheckInput((TextBox)sender);
         }
+
+        /// <summary>
+        /// Функция установки параметров в поля параметров
+        /// </summary>
+        /// <param name="enable">Значение в buildEnableDict</param>
+        /// /// <param name="type">0 - пустое, 1 - минимальное, 2 - максимальное, 3 - по-умолчанию</param>
+        private void SetParameters(bool enable, int type)
+        {
+            Dictionary<string, string> parametersDictionary = new Dictionary<string, string>();
+            foreach (Enum par in Enum.GetValues(typeof(SelfTappingScrewParameters.ParametersName)))
+            {
+                if(type == 0)
+                    parametersDictionary[par.ToString()] = "";
+                else if (type == 1)
+                    parametersDictionary[par.ToString()] = SelfTappingScrewParameters.MinValues[par].ToString();
+                else if (type == 2)
+                    parametersDictionary[par.ToString()] = SelfTappingScrewParameters.MaxValues[par].ToString();
+                else if (type == 3)
+                    parametersDictionary[par.ToString()] = SelfTappingScrewParameters.DefaultValues[par].ToString();
+            }
+            
+            string tempName;
+            foreach (Control c in parametersGroupBox.Controls)
+            {
+                if (c.GetType() == typeof(TextBox))
+                {
+                    tempName = c.Name.ToUpper()[0] + c.Name.Substring(1, c.Name.Length - 8);
+                    c.Text = parametersDictionary[tempName];
+
+                    c.BackColor = Color.White;
+                    buildEnableDict[c.Name] = enable;
+                }
+            }
+        }
         
         //TODO: XML комментарии?
         /// <summary>
@@ -195,19 +189,7 @@ namespace CADSelfTappingScrewUI
         /// </summary>
         private void minParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            string[] parametersValues = new string[8]
-            {
-                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.ThreadDiameter].ToString(),
-                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.InternalThreadDiameter].ToString(),
-                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.RodLength].ToString(),
-                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.ThreadStep].ToString(),
-                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.HeadHight].ToString(),
-                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.ThreadLength].ToString(),
-                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.HeadDiameter].ToString(),
-                SelfTappingScrewParameters.MinValues[SelfTappingScrewParameters.ParametersName.RodDiameter].ToString()
-            };
-
-            SetParameters(parametersValues, true);
+            SetParameters(true, 1);
         }
 
         //TODO: XML комментарии?
@@ -216,19 +198,7 @@ namespace CADSelfTappingScrewUI
         /// </summary>
         private void defaultParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            string[] parametersValues = new string[8]
-            {
-                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.ThreadDiameter].ToString(),
-                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.InternalThreadDiameter].ToString(),
-                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.RodLength].ToString(),
-                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.ThreadStep].ToString(),
-                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.HeadHight].ToString(),
-                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.ThreadLength].ToString(),
-                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.HeadDiameter].ToString(),
-                SelfTappingScrewParameters.DefaultValues[SelfTappingScrewParameters.ParametersName.RodDiameter].ToString()
-            };
-            
-            SetParameters(parametersValues, true);
+            SetParameters(true, 3);
         }
 
         //TODO: XML комментарии?
@@ -237,19 +207,7 @@ namespace CADSelfTappingScrewUI
         /// </summary>
         private void maxParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            string[] parametersValues = new string[8]
-            {
-                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.ThreadDiameter].ToString(),
-                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.InternalThreadDiameter].ToString(),
-                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.RodLength].ToString(),
-                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.ThreadStep].ToString(),
-                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.HeadHight].ToString(),
-                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.ThreadLength].ToString(),
-                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.HeadDiameter].ToString(),
-                SelfTappingScrewParameters.MaxValues[SelfTappingScrewParameters.ParametersName.RodDiameter].ToString()
-            };
-            
-            SetParameters(parametersValues, true);
+            SetParameters(true, 2);
         }
 
         //TODO: XML комментарии?
@@ -258,8 +216,7 @@ namespace CADSelfTappingScrewUI
         /// </summary>
         private void manualInputRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            string[] parametersValues = new string[8] { "", "", "", "", "", "", "", "" };
-            SetParameters(parametersValues, false);
+            SetParameters(true, 0);
         }
     }
 }

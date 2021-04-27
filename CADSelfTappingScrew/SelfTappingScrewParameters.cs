@@ -55,7 +55,7 @@ namespace CADSelfTappingScrew
         /// <summary>
         /// Наличие шайбы
         /// </summary>
-        private bool _washer;
+        private bool _washer = false;
 
         /// <summary>
         /// Свойство внутреннего диаметра головки 
