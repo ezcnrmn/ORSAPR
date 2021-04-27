@@ -53,6 +53,11 @@ namespace CADSelfTappingScrew
         private double _threadStep;
 
         /// <summary>
+        /// Наличие шайбы
+        /// </summary>
+        private bool _washer;
+
+        /// <summary>
         /// Свойство внутреннего диаметра головки 
         /// </summary>
         public double HeadDiameter
@@ -295,7 +300,18 @@ namespace CADSelfTappingScrew
             }
         }
 
-
+        /// <summary>
+        /// Свойство наличия шайбы
+        /// </summary>
+        public bool Washer { get; set; }
+        
+        /// <summary>
+        /// Функция выбрасывания исключения с заданными параметрами
+        /// </summary>
+        /// <param name="parameterNameRus">Название параметра на русском</param>
+        /// <param name="min">Минимальная граница</param>
+        /// <param name="max">Максимальная граница</param>
+        /// <param name="parameterName">Название параметра</param>
         private void ThrowExceptionWithAMessage(string parameterNameRus, 
             double min, double max, string parameterName)
         {

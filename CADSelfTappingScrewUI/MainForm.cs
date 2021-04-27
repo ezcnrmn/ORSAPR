@@ -13,6 +13,9 @@ using KompasWrapper;
 
 namespace CADSelfTappingScrewUI
 {
+    /// <summary>
+    /// Класс главной формы
+    /// </summary>
     public partial class MainForm : Form
     {
         /// <summary>
@@ -108,6 +111,9 @@ namespace CADSelfTappingScrewUI
         }
         
         //TODO: XML комментарии?
+        /// <summary>
+        /// Событие нажатия кнопки постройки
+        /// </summary>
         private void buildButton_Click(object sender, EventArgs e)
         {
             bool buildEnable = true;
@@ -171,12 +177,18 @@ namespace CADSelfTappingScrewUI
         }
 
          //TODO: RSDN
+        /// <summary>
+        /// Событие покидания текстового поля
+        /// </summary>
         private void TextBox_Leave(object sender, EventArgs e)
         {
             CheckInput((TextBox)sender);
         }
         
         //TODO: XML комментарии?
+        /// <summary>
+        /// Событие переключения на radio button с минимальными параметрами
+        /// </summary>
         private void minParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             string[] parametersValues = new string[8]
@@ -195,6 +207,9 @@ namespace CADSelfTappingScrewUI
         }
 
         //TODO: XML комментарии?
+        /// <summary>
+        /// Событие переключения на radio button с параметрами по-умолчанию
+        /// </summary>
         private void defaultParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             string[] parametersValues = new string[8]
@@ -213,6 +228,9 @@ namespace CADSelfTappingScrewUI
         }
 
         //TODO: XML комментарии?
+        /// <summary>
+        /// Событие переключения на radio button с максимальными параметрами
+        /// </summary>
         private void maxParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             string[] parametersValues = new string[8]
@@ -231,6 +249,9 @@ namespace CADSelfTappingScrewUI
         }
 
         //TODO: XML комментарии?
+        /// <summary>
+        /// Событие переключения на radio button с вводом параметров вручную
+        /// </summary>
         private void manualInputRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             string[] parametersValues = new string[8] { "", "", "", "", "", "", "", "" };

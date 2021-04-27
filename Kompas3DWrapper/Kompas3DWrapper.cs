@@ -17,37 +17,37 @@ namespace KompasWrapper
         /// <summary>
         /// Свойство Компас
         /// </summary>
-        public KompasObject kompas { get; set; }
+        public KompasObject KompasObject { get; set; }
 
         //TODO: RSDN naming
         /// <summary>
         /// Свойство Part
         /// </summary>
-        public ksPart iPart { get; set; } = null;
+        public ksPart KsPart { get; set; } = null;
 
         /// <summary>
         /// Функция запуска Компас-3D
         /// </summary>
         public void OpenKompas()
         {
-            if (kompas == null)
+            if (KompasObject == null)
             {
                 Type t = Type.GetTypeFromProgID("KOMPAS.Application.5");
-                kompas = (KompasObject)Activator.CreateInstance(t);
+                KompasObject = (KompasObject)Activator.CreateInstance(t);
             }
 
-            if (kompas != null)
+            if (KompasObject != null)
             {
-                kompas.Visible = true;
-                kompas.ActivateControllerAPI();
+                KompasObject.Visible = true;
+                KompasObject.ActivateControllerAPI();
             }
 
-            if (kompas != null)
+            if (KompasObject != null)
             {
-                ksDocument3D iDocument3D = (ksDocument3D)kompas.Document3D();
+                ksDocument3D iDocument3D = (ksDocument3D)KompasObject.Document3D();
 
                 iDocument3D.Create(false /*видимый*/, true /*деталь*/);
-                iPart = (ksPart)iDocument3D.GetPart((short)Part_Type.pTop_Part);
+                KsPart = (ksPart)iDocument3D.GetPart((short)Part_Type.pTop_Part);
             }
         }
     }

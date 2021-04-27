@@ -24,9 +24,9 @@ namespace KompasWrapper
         public void BuildSelfTappingScrew(Kompas3DWrapper kompas3DWrapper, 
             SelfTappingScrewParameters selfTappingScrewParameters)
         {
-            ksEntity planeXoy = (ksEntity)kompas3DWrapper.iPart.
+            ksEntity planeXoy = (ksEntity)kompas3DWrapper.KsPart.
                 GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
-            ksEntity iSketch = (ksEntity)kompas3DWrapper.iPart.
+            ksEntity iSketch = (ksEntity)kompas3DWrapper.KsPart.
                 NewEntity((short)Obj3dType.o3d_sketch);
 
             ksSketchDefinition iDefinitionSketch = 
@@ -40,9 +40,9 @@ namespace KompasWrapper
             Extrusion(kompas3DWrapper, selfTappingScrewParameters.HeadHight, 
                 iSketch);
 
-            ksEntity planeYoz = (ksEntity)kompas3DWrapper.iPart.
+            ksEntity planeYoz = (ksEntity)kompas3DWrapper.KsPart.
                 GetDefaultEntity((short)Obj3dType.o3d_planeYOZ);
-            ksEntity iSketch2 = (ksEntity)kompas3DWrapper.iPart.
+            ksEntity iSketch2 = (ksEntity)kompas3DWrapper.KsPart.
                 NewEntity((short)Obj3dType.o3d_sketch);
             
             ksSketchDefinition iDefinitionSketch2 = 
@@ -126,9 +126,9 @@ namespace KompasWrapper
             double tipLength, double tipLength2, double tipRadius)
         {
             // рисуем треугольник
-            ksEntity planeXoz = (ksEntity)kompas3DWrapper.iPart.
+            ksEntity planeXoz = (ksEntity)kompas3DWrapper.KsPart.
                 GetDefaultEntity((short)Obj3dType.o3d_planeXOZ);
-            ksEntity iTriangleSketch = (ksEntity)kompas3DWrapper.iPart.
+            ksEntity iTriangleSketch = (ksEntity)kompas3DWrapper.KsPart.
                 NewEntity((short)Obj3dType.o3d_sketch);
 
             ksSketchDefinition iDefinitionTriangleSketch = 
@@ -140,7 +140,7 @@ namespace KompasWrapper
             DrawTriangle(parameters, iDefinitionTriangleSketch, tipLength);
             
             // создаем цилиндрическую спираль
-            ksEntity cylindricSpiral = (ksEntity)kompas3DWrapper.iPart.
+            ksEntity cylindricSpiral = (ksEntity)kompas3DWrapper.KsPart.
                 NewEntity((short)Obj3dType.o3d_cylindricSpiral);
             ksCylindricSpiralDefinition iCylindricSpiralDefinition = 
                 (ksCylindricSpiralDefinition)cylindricSpiral.GetDefinition();
@@ -153,11 +153,11 @@ namespace KompasWrapper
                 parameters.ThreadLength - slopeLength / 3 - tipLength;
             
             // плоскость XOY
-            ksEntity planeXoy = (ksEntity)kompas3DWrapper.iPart.
+            ksEntity planeXoy = (ksEntity)kompas3DWrapper.KsPart.
                 GetDefaultEntity((short)Obj3dType.o3d_planeXOY);
             
             // плоскость смещенная от XOY
-            ksEntity offsetPlane = (ksEntity)kompas3DWrapper.iPart.
+            ksEntity offsetPlane = (ksEntity)kompas3DWrapper.KsPart.
                 NewEntity((short)Obj3dType.o3d_planeOffset);
             ksPlaneOffsetDefinition offsetPlaneDefinition = 
                 (ksPlaneOffsetDefinition) offsetPlane.GetDefinition();
@@ -174,7 +174,7 @@ namespace KompasWrapper
             Evolution(kompas3DWrapper, iTriangleSketch, cylindricSpiral);
             
             // создаем коническую спираль Объект модели (Интерфейсы ksEntity и IEntity)
-            ksEntity conicSpiral = (ksEntity)kompas3DWrapper.iPart.
+            ksEntity conicSpiral = (ksEntity)kompas3DWrapper.KsPart.
                 NewEntity((short)Obj3dType.o3d_conicSpiral);
             ksConicSpiralDefinition iConicSpiralDefinition = 
                 (ksConicSpiralDefinition)conicSpiral.GetDefinition();
@@ -211,7 +211,7 @@ namespace KompasWrapper
         public void Evolution(Kompas3DWrapper kompas3DWrapper, 
             ksEntity sketch, ksEntity path)
         {
-            ksEntity entityEvolution = kompas3DWrapper.iPart.
+            ksEntity entityEvolution = kompas3DWrapper.KsPart.
                 NewEntity((short)Obj3dType.o3d_bossEvolution);
             ksBossEvolutionDefinition iRotateDefinition = 
                 (ksBossEvolutionDefinition)entityEvolution.GetDefinition();
@@ -236,7 +236,7 @@ namespace KompasWrapper
             sketchAxis.ksLineSeg(0, 0, 10, 0, 3);
             definitionSketch.EndEdit();
 
-            ksEntity entityRotate = kompas3DWrapper.iPart.
+            ksEntity entityRotate = kompas3DWrapper.KsPart.
                 NewEntity((short)Obj3dType.o3d_bossRotated);
             // интерфейс базовой операции вращения
             ksBossRotatedDefinition iRotateDefinition = 
@@ -303,7 +303,7 @@ namespace KompasWrapper
         private void DrawHexagon(Kompas3DWrapper kompas3DWrapper, 
             double diameter, ksSketchDefinition iDefinitionSketch)
         {
-            var polygonParam = (ksRegularPolygonParam) kompas3DWrapper.kompas.
+            var polygonParam = (ksRegularPolygonParam) kompas3DWrapper.KompasObject.
                 GetParamStruct((short) StructType2DEnum.ko_RegularPolygonParam);
             
             polygonParam.ang = 0;
@@ -329,7 +329,7 @@ namespace KompasWrapper
         /// <param name="iSketch">Чертеж объекта</param>
         private void Extrusion(Kompas3DWrapper kompas3DWrapper, double depth, ksEntity iSketch)
         {
-            ksEntity extrusion = kompas3DWrapper.iPart.NewEntity(24);
+            ksEntity extrusion = kompas3DWrapper.KsPart.NewEntity(24);
             ksBaseExtrusionDefinition extrusionDefinition = extrusion.GetDefinition();
             extrusionDefinition.SetSideParam(true, 0, depth);
             extrusionDefinition.SetSketch(iSketch);
