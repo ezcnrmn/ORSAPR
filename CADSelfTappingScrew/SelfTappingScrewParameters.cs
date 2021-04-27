@@ -105,13 +105,10 @@ namespace CADSelfTappingScrew
                 if (min <= value && value <= max)
                 {
                     _headHight = value;
+                    return;
                 }
-                else
-                {
-                    //TODO: RSDN
-                    ThrowExceptionWithAMessage(parameterName, min, 
-                        max, "HeadHight");
-                }
+                ThrowExceptionWithAMessage(parameterName, min, 
+                    max, "HeadHight");
             }
         }
 
@@ -298,6 +295,7 @@ namespace CADSelfTappingScrew
             }
         }
 
+
         private void ThrowExceptionWithAMessage(string parameterNameRus, 
             double min, double max, string parameterName)
         {
@@ -306,6 +304,8 @@ namespace CADSelfTappingScrew
             throw new ArgumentException(message, parameterName);
         }
         
+        //TODO: строковые ключи переделать на перечисления.
+        //TODO: XML комментарии?
         public static readonly Dictionary<string, double> MaxValues = 
             new Dictionary<string, double>(8)
         {

@@ -13,11 +13,13 @@ namespace KompasWrapper
     /// </summary>
     public class Kompas3DWrapper
     {
+        //TODO: RSDN naming
         /// <summary>
         /// Свойство Компас
         /// </summary>
         public KompasObject kompas { get; set; }
 
+        //TODO: RSDN naming
         /// <summary>
         /// Свойство Part
         /// </summary>
