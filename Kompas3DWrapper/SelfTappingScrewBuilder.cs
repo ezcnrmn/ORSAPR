@@ -78,8 +78,37 @@ namespace KompasWrapper
                                Math.Sin(angle75Radians);
             MakeThread(kompas3DWrapper, selfTappingScrewParameters, slopeLength, 
                 tipLength, tipLength2 / 2, tipRadius);
+
+            // построение шайбы толщиной 1 мм
+            if (selfTappingScrewParameters.Washer)
+            {
+                BuildWasher(selfTappingScrewParameters, kompas3DWrapper, planeYoz, 1);
+            }
         }
 
+        
+        private void BuildWasher(SelfTappingScrewParameters parameters, Kompas3DWrapper kompas3DWrapper, ksEntity plane, double thickness)
+        {
+            ksEntity iSketch = (ksEntity)kompas3DWrapper.KsPart.NewEntity((short)Obj3dType.o3d_sketch);
+            ksSketchDefinition iDefinitionSketch = (ksSketchDefinition)iSketch.GetDefinition();
+            iDefinitionSketch.SetPlane(plane);
+            iSketch.hidden = true;
+            iSketch.Create();
+
+            double washerHight = parameters.HeadDiameter / 2 / Math.Sin(85 * Math.PI / 180) * Math.Sin(5 * Math.PI / 180);
+
+            ksDocument2D rodDocument2D = (ksDocument2D)iDefinitionSketch.BeginEdit();
+
+            rodDocument2D.ksLineSeg(0, parameters.RodDiameter / 2, washerHight, parameters.RodDiameter / 2 + parameters.HeadDiameter / 2, 1);
+            rodDocument2D.ksLineSeg(washerHight, parameters.RodDiameter / 2 + parameters.HeadDiameter / 2, washerHight + thickness, parameters.RodDiameter / 2 + parameters.HeadDiameter / 2, 1);
+            rodDocument2D.ksLineSeg(0, parameters.RodDiameter / 2, thickness, parameters.RodDiameter / 2, 1);
+            rodDocument2D.ksLineSeg(thickness, parameters.RodDiameter / 2, washerHight + thickness, parameters.RodDiameter / 2 + parameters.HeadDiameter / 2, 1);
+
+            iDefinitionSketch.EndEdit();
+            
+            RotationOperation(kompas3DWrapper, iSketch, iDefinitionSketch);
+        }
+        
         /// <summary>
         /// Функция отрисовки чертежа зубца резьбы
         /// </summary>

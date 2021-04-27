@@ -149,6 +149,7 @@ namespace CADSelfTappingScrewUI
                         = double.Parse(rodDiameterTextBox.Text);
                     selfTappingScrewParameters.InternalThreadDiameter =
                         double.Parse(internalThreadDiameterTextBox.Text);
+                    selfTappingScrewParameters.Washer = washerCheckBox.Checked;
                     
                     Kompas3DWrapper kompas3DWrapper = new Kompas3DWrapper();
                     kompas3DWrapper.OpenKompas();

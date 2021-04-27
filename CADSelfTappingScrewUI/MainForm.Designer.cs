@@ -61,6 +61,8 @@ namespace CADSelfTappingScrewUI
             this.defaultParametersRadioButton = new System.Windows.Forms.RadioButton();
             this.minParametersRadioButton = new System.Windows.Forms.RadioButton();
             this.buildButton = new System.Windows.Forms.Button();
+            this.washerCheckBox = new System.Windows.Forms.CheckBox();
+            this.washerLabel = new System.Windows.Forms.Label();
             this.parametersGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.schemePictureBox)).BeginInit();
             this.schemeGroupBox.SuspendLayout();
@@ -68,6 +70,8 @@ namespace CADSelfTappingScrewUI
             // 
             // parametersGroupBox
             // 
+            this.parametersGroupBox.Controls.Add(this.washerLabel);
+            this.parametersGroupBox.Controls.Add(this.washerCheckBox);
             this.parametersGroupBox.Controls.Add(this.unitsLabel2);
             this.parametersGroupBox.Controls.Add(this.unitsLabel1);
             this.parametersGroupBox.Controls.Add(this.unitsLabel4);
@@ -101,7 +105,7 @@ namespace CADSelfTappingScrewUI
             // unitsLabel2
             // 
             this.unitsLabel2.AutoSize = true;
-            this.unitsLabel2.Location = new System.Drawing.Point(104, 48);
+            this.unitsLabel2.Location = new System.Drawing.Point(82, 48);
             this.unitsLabel2.Name = "unitsLabel2";
             this.unitsLabel2.Size = new System.Drawing.Size(23, 13);
             this.unitsLabel2.TabIndex = 23;
@@ -110,7 +114,7 @@ namespace CADSelfTappingScrewUI
             // unitsLabel1
             // 
             this.unitsLabel1.AutoSize = true;
-            this.unitsLabel1.Location = new System.Drawing.Point(104, 22);
+            this.unitsLabel1.Location = new System.Drawing.Point(82, 22);
             this.unitsLabel1.Name = "unitsLabel1";
             this.unitsLabel1.Size = new System.Drawing.Size(23, 13);
             this.unitsLabel1.TabIndex = 22;
@@ -119,7 +123,7 @@ namespace CADSelfTappingScrewUI
             // unitsLabel4
             // 
             this.unitsLabel4.AutoSize = true;
-            this.unitsLabel4.Location = new System.Drawing.Point(243, 48);
+            this.unitsLabel4.Location = new System.Drawing.Point(201, 48);
             this.unitsLabel4.Name = "unitsLabel4";
             this.unitsLabel4.Size = new System.Drawing.Size(23, 13);
             this.unitsLabel4.TabIndex = 21;
@@ -128,7 +132,7 @@ namespace CADSelfTappingScrewUI
             // unitsLabel3
             // 
             this.unitsLabel3.AutoSize = true;
-            this.unitsLabel3.Location = new System.Drawing.Point(243, 22);
+            this.unitsLabel3.Location = new System.Drawing.Point(201, 22);
             this.unitsLabel3.Name = "unitsLabel3";
             this.unitsLabel3.Size = new System.Drawing.Size(23, 13);
             this.unitsLabel3.TabIndex = 20;
@@ -137,7 +141,7 @@ namespace CADSelfTappingScrewUI
             // unitsLabel6
             // 
             this.unitsLabel6.AutoSize = true;
-            this.unitsLabel6.Location = new System.Drawing.Point(381, 48);
+            this.unitsLabel6.Location = new System.Drawing.Point(319, 48);
             this.unitsLabel6.Name = "unitsLabel6";
             this.unitsLabel6.Size = new System.Drawing.Size(23, 13);
             this.unitsLabel6.TabIndex = 19;
@@ -146,7 +150,7 @@ namespace CADSelfTappingScrewUI
             // unitsLabel5
             // 
             this.unitsLabel5.AutoSize = true;
-            this.unitsLabel5.Location = new System.Drawing.Point(381, 22);
+            this.unitsLabel5.Location = new System.Drawing.Point(319, 22);
             this.unitsLabel5.Name = "unitsLabel5";
             this.unitsLabel5.Size = new System.Drawing.Size(23, 13);
             this.unitsLabel5.TabIndex = 18;
@@ -155,7 +159,7 @@ namespace CADSelfTappingScrewUI
             // unitsLabel8
             // 
             this.unitsLabel8.AutoSize = true;
-            this.unitsLabel8.Location = new System.Drawing.Point(517, 48);
+            this.unitsLabel8.Location = new System.Drawing.Point(436, 48);
             this.unitsLabel8.Name = "unitsLabel8";
             this.unitsLabel8.Size = new System.Drawing.Size(23, 13);
             this.unitsLabel8.TabIndex = 17;
@@ -164,7 +168,7 @@ namespace CADSelfTappingScrewUI
             // unitsLabel7
             // 
             this.unitsLabel7.AutoSize = true;
-            this.unitsLabel7.Location = new System.Drawing.Point(517, 22);
+            this.unitsLabel7.Location = new System.Drawing.Point(436, 22);
             this.unitsLabel7.Name = "unitsLabel7";
             this.unitsLabel7.Size = new System.Drawing.Size(23, 13);
             this.unitsLabel7.TabIndex = 16;
@@ -172,16 +176,16 @@ namespace CADSelfTappingScrewUI
             // 
             // headDiameterTextBox
             // 
-            this.headDiameterTextBox.Location = new System.Drawing.Point(466, 19);
+            this.headDiameterTextBox.Location = new System.Drawing.Point(385, 19);
             this.headDiameterTextBox.Name = "headDiameterTextBox";
             this.headDiameterTextBox.Size = new System.Drawing.Size(45, 20);
-            this.headDiameterTextBox.TabIndex = 15;
+            this.headDiameterTextBox.TabIndex = 7;
             this.headDiameterTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // headDiameterLabel
             // 
             this.headDiameterLabel.AutoSize = true;
-            this.headDiameterLabel.Location = new System.Drawing.Point(445, 22);
+            this.headDiameterLabel.Location = new System.Drawing.Point(364, 22);
             this.headDiameterLabel.Name = "headDiameterLabel";
             this.headDiameterLabel.Size = new System.Drawing.Size(15, 13);
             this.headDiameterLabel.TabIndex = 14;
@@ -189,16 +193,16 @@ namespace CADSelfTappingScrewUI
             // 
             // rodDiameterTextBox
             // 
-            this.rodDiameterTextBox.Location = new System.Drawing.Point(466, 45);
+            this.rodDiameterTextBox.Location = new System.Drawing.Point(385, 45);
             this.rodDiameterTextBox.Name = "rodDiameterTextBox";
             this.rodDiameterTextBox.Size = new System.Drawing.Size(45, 20);
-            this.rodDiameterTextBox.TabIndex = 13;
+            this.rodDiameterTextBox.TabIndex = 8;
             this.rodDiameterTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // rodDiameterLabel
             // 
             this.rodDiameterLabel.AutoSize = true;
-            this.rodDiameterLabel.Location = new System.Drawing.Point(444, 48);
+            this.rodDiameterLabel.Location = new System.Drawing.Point(363, 48);
             this.rodDiameterLabel.Name = "rodDiameterLabel";
             this.rodDiameterLabel.Size = new System.Drawing.Size(19, 13);
             this.rodDiameterLabel.TabIndex = 12;
@@ -206,16 +210,16 @@ namespace CADSelfTappingScrewUI
             // 
             // internalThreadDiameterTextBox
             // 
-            this.internalThreadDiameterTextBox.Location = new System.Drawing.Point(53, 45);
+            this.internalThreadDiameterTextBox.Location = new System.Drawing.Point(31, 45);
             this.internalThreadDiameterTextBox.Name = "internalThreadDiameterTextBox";
             this.internalThreadDiameterTextBox.Size = new System.Drawing.Size(45, 20);
-            this.internalThreadDiameterTextBox.TabIndex = 11;
+            this.internalThreadDiameterTextBox.TabIndex = 2;
             this.internalThreadDiameterTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // internalThreadDiameterLabel
             // 
             this.internalThreadDiameterLabel.AutoSize = true;
-            this.internalThreadDiameterLabel.Location = new System.Drawing.Point(31, 48);
+            this.internalThreadDiameterLabel.Location = new System.Drawing.Point(9, 48);
             this.internalThreadDiameterLabel.Name = "internalThreadDiameterLabel";
             this.internalThreadDiameterLabel.Size = new System.Drawing.Size(19, 13);
             this.internalThreadDiameterLabel.TabIndex = 10;
@@ -223,16 +227,16 @@ namespace CADSelfTappingScrewUI
             // 
             // threadDiameterTextBox
             // 
-            this.threadDiameterTextBox.Location = new System.Drawing.Point(53, 19);
+            this.threadDiameterTextBox.Location = new System.Drawing.Point(31, 19);
             this.threadDiameterTextBox.Name = "threadDiameterTextBox";
             this.threadDiameterTextBox.Size = new System.Drawing.Size(45, 20);
-            this.threadDiameterTextBox.TabIndex = 9;
+            this.threadDiameterTextBox.TabIndex = 1;
             this.threadDiameterTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // threadDiameterLabel
             // 
             this.threadDiameterLabel.AutoSize = true;
-            this.threadDiameterLabel.Location = new System.Drawing.Point(34, 22);
+            this.threadDiameterLabel.Location = new System.Drawing.Point(12, 22);
             this.threadDiameterLabel.Name = "threadDiameterLabel";
             this.threadDiameterLabel.Size = new System.Drawing.Size(13, 13);
             this.threadDiameterLabel.TabIndex = 8;
@@ -240,16 +244,16 @@ namespace CADSelfTappingScrewUI
             // 
             // threadLengthTextBox
             // 
-            this.threadLengthTextBox.Location = new System.Drawing.Point(330, 45);
+            this.threadLengthTextBox.Location = new System.Drawing.Point(268, 45);
             this.threadLengthTextBox.Name = "threadLengthTextBox";
             this.threadLengthTextBox.Size = new System.Drawing.Size(45, 20);
-            this.threadLengthTextBox.TabIndex = 7;
+            this.threadLengthTextBox.TabIndex = 6;
             this.threadLengthTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // threadLengthLabel
             // 
             this.threadLengthLabel.AutoSize = true;
-            this.threadLengthLabel.Location = new System.Drawing.Point(311, 48);
+            this.threadLengthLabel.Location = new System.Drawing.Point(249, 48);
             this.threadLengthLabel.Name = "threadLengthLabel";
             this.threadLengthLabel.Size = new System.Drawing.Size(13, 13);
             this.threadLengthLabel.TabIndex = 6;
@@ -257,16 +261,16 @@ namespace CADSelfTappingScrewUI
             // 
             // threadStepTextBox
             // 
-            this.threadStepTextBox.Location = new System.Drawing.Point(192, 45);
+            this.threadStepTextBox.Location = new System.Drawing.Point(150, 45);
             this.threadStepTextBox.Name = "threadStepTextBox";
             this.threadStepTextBox.Size = new System.Drawing.Size(45, 20);
-            this.threadStepTextBox.TabIndex = 5;
+            this.threadStepTextBox.TabIndex = 4;
             this.threadStepTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // threadStepLabel
             // 
             this.threadStepLabel.AutoSize = true;
-            this.threadStepLabel.Location = new System.Drawing.Point(172, 48);
+            this.threadStepLabel.Location = new System.Drawing.Point(130, 48);
             this.threadStepLabel.Name = "threadStepLabel";
             this.threadStepLabel.Size = new System.Drawing.Size(14, 13);
             this.threadStepLabel.TabIndex = 4;
@@ -274,16 +278,16 @@ namespace CADSelfTappingScrewUI
             // 
             // headHightTextBox
             // 
-            this.headHightTextBox.Location = new System.Drawing.Point(330, 19);
+            this.headHightTextBox.Location = new System.Drawing.Point(268, 19);
             this.headHightTextBox.Name = "headHightTextBox";
             this.headHightTextBox.Size = new System.Drawing.Size(45, 20);
-            this.headHightTextBox.TabIndex = 3;
+            this.headHightTextBox.TabIndex = 5;
             this.headHightTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // headHightLabel
             // 
             this.headHightLabel.AutoSize = true;
-            this.headHightLabel.Location = new System.Drawing.Point(310, 22);
+            this.headHightLabel.Location = new System.Drawing.Point(248, 22);
             this.headHightLabel.Name = "headHightLabel";
             this.headHightLabel.Size = new System.Drawing.Size(14, 13);
             this.headHightLabel.TabIndex = 2;
@@ -291,16 +295,16 @@ namespace CADSelfTappingScrewUI
             // 
             // rodLengthTextBox
             // 
-            this.rodLengthTextBox.Location = new System.Drawing.Point(192, 19);
+            this.rodLengthTextBox.Location = new System.Drawing.Point(150, 19);
             this.rodLengthTextBox.Name = "rodLengthTextBox";
             this.rodLengthTextBox.Size = new System.Drawing.Size(45, 20);
-            this.rodLengthTextBox.TabIndex = 1;
+            this.rodLengthTextBox.TabIndex = 3;
             this.rodLengthTextBox.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // rodLengthLabel
             // 
             this.rodLengthLabel.AutoSize = true;
-            this.rodLengthLabel.Location = new System.Drawing.Point(175, 22);
+            this.rodLengthLabel.Location = new System.Drawing.Point(133, 22);
             this.rodLengthLabel.Name = "rodLengthLabel";
             this.rodLengthLabel.Size = new System.Drawing.Size(9, 13);
             this.rodLengthLabel.TabIndex = 0;
@@ -336,7 +340,7 @@ namespace CADSelfTappingScrewUI
             this.manualInputRadioButton.Location = new System.Drawing.Point(477, 19);
             this.manualInputRadioButton.Name = "manualInputRadioButton";
             this.manualInputRadioButton.Size = new System.Drawing.Size(87, 17);
-            this.manualInputRadioButton.TabIndex = 4;
+            this.manualInputRadioButton.TabIndex = 12;
             this.manualInputRadioButton.TabStop = true;
             this.manualInputRadioButton.Text = "Ручной ввод";
             this.manualInputRadioButton.UseVisualStyleBackColor = true;
@@ -348,7 +352,7 @@ namespace CADSelfTappingScrewUI
             this.maxParametersRadioButton.Location = new System.Drawing.Point(450, 215);
             this.maxParametersRadioButton.Name = "maxParametersRadioButton";
             this.maxParametersRadioButton.Size = new System.Drawing.Size(115, 17);
-            this.maxParametersRadioButton.TabIndex = 3;
+            this.maxParametersRadioButton.TabIndex = 15;
             this.maxParametersRadioButton.TabStop = true;
             this.maxParametersRadioButton.Text = "Макс. параметры";
             this.maxParametersRadioButton.UseVisualStyleBackColor = true;
@@ -360,7 +364,7 @@ namespace CADSelfTappingScrewUI
             this.defaultParametersRadioButton.Location = new System.Drawing.Point(450, 192);
             this.defaultParametersRadioButton.Name = "defaultParametersRadioButton";
             this.defaultParametersRadioButton.Size = new System.Drawing.Size(98, 17);
-            this.defaultParametersRadioButton.TabIndex = 2;
+            this.defaultParametersRadioButton.TabIndex = 14;
             this.defaultParametersRadioButton.TabStop = true;
             this.defaultParametersRadioButton.Text = "По-умолчанию";
             this.defaultParametersRadioButton.UseVisualStyleBackColor = true;
@@ -372,7 +376,7 @@ namespace CADSelfTappingScrewUI
             this.minParametersRadioButton.Location = new System.Drawing.Point(450, 169);
             this.minParametersRadioButton.Name = "minParametersRadioButton";
             this.minParametersRadioButton.Size = new System.Drawing.Size(109, 17);
-            this.minParametersRadioButton.TabIndex = 1;
+            this.minParametersRadioButton.TabIndex = 13;
             this.minParametersRadioButton.TabStop = true;
             this.minParametersRadioButton.Text = "Мин. параметры";
             this.minParametersRadioButton.UseVisualStyleBackColor = true;
@@ -383,10 +387,28 @@ namespace CADSelfTappingScrewUI
             this.buildButton.Location = new System.Drawing.Point(263, 339);
             this.buildButton.Name = "buildButton";
             this.buildButton.Size = new System.Drawing.Size(75, 23);
-            this.buildButton.TabIndex = 3;
+            this.buildButton.TabIndex = 10;
             this.buildButton.Text = "Построить";
             this.buildButton.UseVisualStyleBackColor = true;
             this.buildButton.Click += new System.EventHandler(this.buildButton_Click);
+            // 
+            // washerCheckBox
+            // 
+            this.washerCheckBox.AutoSize = true;
+            this.washerCheckBox.Location = new System.Drawing.Point(516, 42);
+            this.washerCheckBox.Name = "washerCheckBox";
+            this.washerCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.washerCheckBox.TabIndex = 9;
+            this.washerCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // washerLabel
+            // 
+            this.washerLabel.AutoSize = true;
+            this.washerLabel.Location = new System.Drawing.Point(479, 26);
+            this.washerLabel.Name = "washerLabel";
+            this.washerLabel.Size = new System.Drawing.Size(90, 13);
+            this.washerLabel.TabIndex = 25;
+            this.washerLabel.Text = "Наличие шайбы:";
             // 
             // MainForm
             // 
@@ -444,6 +466,8 @@ namespace CADSelfTappingScrewUI
         private System.Windows.Forms.RadioButton defaultParametersRadioButton;
         private System.Windows.Forms.RadioButton minParametersRadioButton;
         private System.Windows.Forms.RadioButton manualInputRadioButton;
+        private System.Windows.Forms.Label washerLabel;
+        private System.Windows.Forms.CheckBox washerCheckBox;
     }
 }
 
