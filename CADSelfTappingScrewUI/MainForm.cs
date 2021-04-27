@@ -38,20 +38,35 @@ namespace CADSelfTappingScrewUI
         private void SetParameters(string[] parameters, bool enable)
         {
             threadDiameterTextBox.Text = parameters[0];
+            threadDiameterTextBox.BackColor = Color.White;
             buildEnableDict["threadDiameterTextBox"] = enable;
+            
             internalThreadDiameterTextBox.Text = parameters[1];
+            internalThreadDiameterTextBox.BackColor = Color.White;
             buildEnableDict["internalThreadDiameterTextBox"] = enable;
+            
             rodLengthTextBox.Text = parameters[2];
+            rodLengthTextBox.BackColor = Color.White;
             buildEnableDict["rodLengthTextBox"] = enable;
+
             threadStepTextBox.Text = parameters[3];
+            threadStepTextBox.BackColor = Color.White;
             buildEnableDict["threadStepTextBox"] = enable;
+            
             headHightTextBox.Text = parameters[4];
+            headHightTextBox.BackColor = Color.White;
             buildEnableDict["headHightTextBox"] = enable;
+            
             threadLengthTextBox.Text = parameters[5];
+            threadLengthTextBox.BackColor = Color.White;
             buildEnableDict["threadLengthTextBox"] = enable;
+            
             headDiameterTextBox.Text = parameters[6];
+            headDiameterTextBox.BackColor = Color.White;
             buildEnableDict["headDiameterTextBox"] = enable;
+            
             rodDiameterTextBox.Text = parameters[7];
+            rodDiameterTextBox.BackColor = Color.White;
             buildEnableDict["rodDiameterTextBox"] = enable;
         }
         

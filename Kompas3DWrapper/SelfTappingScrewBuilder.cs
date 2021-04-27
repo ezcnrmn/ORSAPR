@@ -49,7 +49,6 @@ namespace KompasWrapper
                 (ksSketchDefinition)iSketch2.GetDefinition();
             iDefinitionSketch2.SetPlane(planeYoz);
             iSketch2.Create();
-            
 
             // расчеты длины уклона
             double angle20Radians = 20 * Math.PI / 180;

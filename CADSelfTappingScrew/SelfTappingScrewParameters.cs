@@ -76,8 +76,15 @@ namespace CADSelfTappingScrew
                 }
                 else
                 {
-                    ThrowExceptionWithAMessage(parameterName, min, 
-                        max, "HeadDiameter");
+                    if (dependentParameter > min)
+                    {
+                        ThrowExceptionWithAMessage(parameterName, dependentParameter, max, "HeadDiameter");
+                    }
+                    else
+                    {
+                        ThrowExceptionWithAMessage(parameterName, min, max, "HeadDiameter");
+                    }
+                    
                 }
             }
         }
@@ -132,8 +139,14 @@ namespace CADSelfTappingScrew
                 }
                 else
                 {
-                    ThrowExceptionWithAMessage(parameterName, min, 
-                        max, "InternalThreadDiameter");
+                    if (dependentParameter > max)
+                    {
+                        ThrowExceptionWithAMessage(parameterName, min, max, "InternalThreadDiameter");
+                    }
+                    else
+                    {
+                        ThrowExceptionWithAMessage(parameterName, min, dependentParameter, "InternalThreadDiameter");
+                    }
                 }
             }
         }
@@ -161,8 +174,7 @@ namespace CADSelfTappingScrew
                 }
                 else
                 {
-                    ThrowExceptionWithAMessage(parameterName, min, 
-                        max, "RodDiameter");
+                    ThrowExceptionWithAMessage(parameterName, dependentParameter1, dependentParameter2, "RodDiameter");
                 }
             }
         }
@@ -187,8 +199,14 @@ namespace CADSelfTappingScrew
                 }
                 else
                 {
-                    ThrowExceptionWithAMessage(parameterName, min, 
-                        max, "RodLength");
+                    if (dependentParameter > min)
+                    {
+                        ThrowExceptionWithAMessage(parameterName, dependentParameter, max, "RodLength");
+                    }
+                    else
+                    {
+                        ThrowExceptionWithAMessage(parameterName, min, max, "RodLength");
+                    }
                 }
             }
         }
@@ -217,8 +235,7 @@ namespace CADSelfTappingScrew
                 }
                 else
                 {
-                    ThrowExceptionWithAMessage(parameterName, min, 
-                        max, "ThreadDiameter");
+                    ThrowExceptionWithAMessage(parameterName, dependentParameter1, dependentParameter2, "ThreadDiameter");
                 }
             }
         }
@@ -244,8 +261,14 @@ namespace CADSelfTappingScrew
                 }
                 else
                 {
-                    ThrowExceptionWithAMessage(parameterName, min, 
-                        max, "ThreadLength");
+                    if (dependentParameter > max)
+                    {
+                        ThrowExceptionWithAMessage(parameterName, min, max, "ThreadLength");
+                    }
+                    else
+                    {
+                        ThrowExceptionWithAMessage(parameterName, min, dependentParameter, "ThreadLength");
+                    }
                 }
             }
         }
