@@ -19,7 +19,7 @@ namespace CADSelfTappingScrewUI
         /// Словарь корректно введенных значений для каждого текстового поля
         /// </summary>
         Dictionary<string, bool> buildEnableDict 
-            = new Dictionary<string, bool>(8);
+            = new Dictionary<string, bool>();
         
         /// <summary>
         /// Главная форма
@@ -92,6 +92,7 @@ namespace CADSelfTappingScrewUI
             }
         }
         
+        //TODO: XML комментарии?
         private void buildButton_Click(object sender, EventArgs e)
         {
             bool buildEnable = true;
@@ -154,13 +155,13 @@ namespace CADSelfTappingScrewUI
             }
         }
 
-        //TODO: Duplication
+         //TODO: RSDN
         private void TextBox_Leave(object sender, EventArgs e)
         {
             CheckInput((TextBox)sender);
         }
         
-        //TODO: Должно быть в модели данных
+        //TODO: XML комментарии?
         private void minParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             string[] parametersValues = new string[8]
@@ -178,6 +179,7 @@ namespace CADSelfTappingScrewUI
             SetParameters(parametersValues, true);
         }
 
+        //TODO: XML комментарии?
         private void defaultParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             string[] parametersValues = new string[8]
@@ -195,6 +197,7 @@ namespace CADSelfTappingScrewUI
             SetParameters(parametersValues, true);
         }
 
+        //TODO: XML комментарии?
         private void maxParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             string[] parametersValues = new string[8]
@@ -212,6 +215,7 @@ namespace CADSelfTappingScrewUI
             SetParameters(parametersValues, true);
         }
 
+        //TODO: XML комментарии?
         private void manualInputRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             string[] parametersValues = new string[8] { "", "", "", "", "", "", "", "" };
