@@ -157,7 +157,7 @@ namespace CADSelfTappingScrewUI
         private void SetParameters(bool enable, int type)
         {
             Dictionary<string, string> parametersDictionary = new Dictionary<string, string>();
-            foreach (Enum par in Enum.GetValues(typeof(SelfTappingScrewParameters.ParametersName)))
+            foreach (Enum par in Enum.GetValues(typeof(ParametersName)))
             {
                 if(type == 0)
                     parametersDictionary[par.ToString()] = "";

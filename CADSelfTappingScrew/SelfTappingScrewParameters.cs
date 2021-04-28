@@ -333,21 +333,6 @@ namespace CADSelfTappingScrew
                              "\" должен быть между " + min + " и " + max + " мм!";
             throw new ArgumentException(message, parameterName.ToString());
         }
-
-        /// <summary>
-        /// Перечесление названий параметров
-        /// </summary>
-        public enum ParametersName
-        {
-            ThreadDiameter,
-            InternalThreadDiameter,
-            RodLength,
-            ThreadStep,
-            HeadHight,
-            ThreadLength,
-            HeadDiameter,
-            RodDiameter
-        }
         
         //TODO: строковые ключи переделать на перечисления.
         //TODO: XML комментарии?
