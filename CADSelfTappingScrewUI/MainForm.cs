@@ -162,11 +162,14 @@ namespace CADSelfTappingScrewUI
                 if(type == 0)
                     parametersDictionary[par.ToString()] = "";
                 else if (type == 1)
-                    parametersDictionary[par.ToString()] = SelfTappingScrewParameters.MinValues[par].ToString();
+                    parametersDictionary[par.ToString()] = 
+                        SelfTappingScrewParameters.MinValues[par].ToString();
                 else if (type == 2)
-                    parametersDictionary[par.ToString()] = SelfTappingScrewParameters.MaxValues[par].ToString();
+                    parametersDictionary[par.ToString()] = 
+                        SelfTappingScrewParameters.MaxValues[par].ToString();
                 else if (type == 3)
-                    parametersDictionary[par.ToString()] = SelfTappingScrewParameters.DefaultValues[par].ToString();
+                    parametersDictionary[par.ToString()] = 
+                        SelfTappingScrewParameters.DefaultValues[par].ToString();
             }
             
             string tempName;
@@ -174,7 +177,8 @@ namespace CADSelfTappingScrewUI
             {
                 if (c.GetType() == typeof(TextBox))
                 {
-                    tempName = c.Name.ToUpper()[0] + c.Name.Substring(1, c.Name.Length - 8);
+                    tempName = c.Name.ToUpper()[0] + 
+                               c.Name.Substring(1, c.Name.Length - 8);
                     c.Text = parametersDictionary[tempName];
 
                     c.BackColor = Color.White;

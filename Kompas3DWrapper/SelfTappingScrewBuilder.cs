@@ -87,22 +87,42 @@ namespace KompasWrapper
         }
 
         
-        private void BuildWasher(SelfTappingScrewParameters parameters, Kompas3DWrapper kompas3DWrapper, ksEntity plane, double thickness)
+        private void BuildWasher(SelfTappingScrewParameters parameters,
+            Kompas3DWrapper kompas3DWrapper, ksEntity plane, double thickness)
         {
-            ksEntity iSketch = (ksEntity)kompas3DWrapper.KsPart.NewEntity((short)Obj3dType.o3d_sketch);
-            ksSketchDefinition iDefinitionSketch = (ksSketchDefinition)iSketch.GetDefinition();
+            ksEntity iSketch = (ksEntity)kompas3DWrapper.
+                KsPart.NewEntity((short)Obj3dType.o3d_sketch);
+            ksSketchDefinition iDefinitionSketch = 
+                (ksSketchDefinition)iSketch.GetDefinition();
             iDefinitionSketch.SetPlane(plane);
             iSketch.hidden = true;
             iSketch.Create();
 
-            double washerHight = parameters.HeadDiameter / 2 / Math.Sin(85 * Math.PI / 180) * Math.Sin(5 * Math.PI / 180);
+            double washerHight = parameters.HeadDiameter / 2 / 
+                Math.Sin(85 * Math.PI / 180) * Math.Sin(5 * Math.PI / 180);
 
             ksDocument2D rodDocument2D = (ksDocument2D)iDefinitionSketch.BeginEdit();
 
-            rodDocument2D.ksLineSeg(0, parameters.RodDiameter / 2, washerHight, parameters.RodDiameter / 2 + parameters.HeadDiameter / 2, 1);
-            rodDocument2D.ksLineSeg(washerHight, parameters.RodDiameter / 2 + parameters.HeadDiameter / 2, washerHight + thickness, parameters.RodDiameter / 2 + parameters.HeadDiameter / 2, 1);
-            rodDocument2D.ksLineSeg(0, parameters.RodDiameter / 2, thickness, parameters.RodDiameter / 2, 1);
-            rodDocument2D.ksLineSeg(thickness, parameters.RodDiameter / 2, washerHight + thickness, parameters.RodDiameter / 2 + parameters.HeadDiameter / 2, 1);
+            rodDocument2D.ksLineSeg(0,
+                parameters.RodDiameter / 2,
+                washerHight,
+                parameters.RodDiameter / 2 + parameters.HeadDiameter / 2,
+                1);
+            rodDocument2D.ksLineSeg(washerHight,
+                parameters.RodDiameter / 2 + parameters.HeadDiameter / 2,
+                washerHight + thickness,
+                parameters.RodDiameter / 2 + parameters.HeadDiameter / 2,
+                1);
+            rodDocument2D.ksLineSeg(0, 
+                parameters.RodDiameter / 2,
+                thickness, 
+                parameters.RodDiameter / 2, 
+                1);
+            rodDocument2D.ksLineSeg(thickness,
+                parameters.RodDiameter / 2,
+                washerHight + thickness,
+                parameters.RodDiameter / 2 + parameters.HeadDiameter / 2,
+                1);
 
             iDefinitionSketch.EndEdit();
             
@@ -304,7 +324,8 @@ namespace KompasWrapper
                 parameters.InternalThreadDiameter / 2,
                 1);
             // линия длины резьбы
-            rodDocument2D.ksLineSeg(parameters.RodLength - parameters.ThreadLength + slopeLength,
+            rodDocument2D.ksLineSeg(parameters.RodLength - 
+                parameters.ThreadLength + slopeLength,
                 parameters.InternalThreadDiameter / 2,
                 parameters.RodLength - tipLength,
                 parameters.InternalThreadDiameter / 2,
