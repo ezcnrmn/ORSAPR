@@ -74,7 +74,7 @@ namespace CADSelfTappingScrewUI
         /// <summary>
         /// Событие нажатия кнопки постройки
         /// </summary>
-        private void buildButton_Click(object sender, EventArgs e)
+        private void BuildButton_Click(object sender, EventArgs e)
         {
             bool buildEnable = true;
             
@@ -191,7 +191,7 @@ namespace CADSelfTappingScrewUI
         /// <summary>
         /// Событие переключения на radio button с минимальными параметрами
         /// </summary>
-        private void minParametersRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void MinParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             SetParameters(true, 1);
         }
@@ -200,7 +200,7 @@ namespace CADSelfTappingScrewUI
         /// <summary>
         /// Событие переключения на radio button с параметрами по-умолчанию
         /// </summary>
-        private void defaultParametersRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void DefaultParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             SetParameters(true, 3);
         }
@@ -209,7 +209,7 @@ namespace CADSelfTappingScrewUI
         /// <summary>
         /// Событие переключения на radio button с максимальными параметрами
         /// </summary>
-        private void maxParametersRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void MaxParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             SetParameters(true, 2);
         }
@@ -218,7 +218,7 @@ namespace CADSelfTappingScrewUI
         /// <summary>
         /// Событие переключения на radio button с вводом параметров вручную
         /// </summary>
-        private void manualInputRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void ManualInputRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             SetParameters(true, 0);
         }

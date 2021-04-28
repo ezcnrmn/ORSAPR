@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="SelfTappingScrewParametersTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StressTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -63,6 +64,10 @@
     <ProjectReference Include="..\..\CADSelfTappingScrew\CADSelfTappingScrew.csproj">
       <Project>{f3f6ef5e-3e8d-47f1-a536-5a07d0d53a76}</Project>
       <Name>CADSelfTappingScrew</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Kompas3DWrapper\KompasWrapper.csproj">
+      <Project>{30c16564-0518-4b65-a38a-e05470cf8a08}</Project>
+      <Name>KompasWrapper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

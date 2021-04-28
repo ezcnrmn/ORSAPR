@@ -30,6 +30,8 @@ namespace CADSelfTappingScrewUI
         private void InitializeComponent()
         {
             this.parametersGroupBox = new System.Windows.Forms.GroupBox();
+            this.washerLabel = new System.Windows.Forms.Label();
+            this.washerCheckBox = new System.Windows.Forms.CheckBox();
             this.unitsLabel2 = new System.Windows.Forms.Label();
             this.unitsLabel1 = new System.Windows.Forms.Label();
             this.unitsLabel4 = new System.Windows.Forms.Label();
@@ -61,8 +63,6 @@ namespace CADSelfTappingScrewUI
             this.defaultParametersRadioButton = new System.Windows.Forms.RadioButton();
             this.minParametersRadioButton = new System.Windows.Forms.RadioButton();
             this.buildButton = new System.Windows.Forms.Button();
-            this.washerCheckBox = new System.Windows.Forms.CheckBox();
-            this.washerLabel = new System.Windows.Forms.Label();
             this.parametersGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.schemePictureBox)).BeginInit();
             this.schemeGroupBox.SuspendLayout();
@@ -101,6 +101,24 @@ namespace CADSelfTappingScrewUI
             this.parametersGroupBox.Size = new System.Drawing.Size(577, 79);
             this.parametersGroupBox.TabIndex = 1;
             this.parametersGroupBox.TabStop = false;
+            // 
+            // washerLabel
+            // 
+            this.washerLabel.AutoSize = true;
+            this.washerLabel.Location = new System.Drawing.Point(479, 26);
+            this.washerLabel.Name = "washerLabel";
+            this.washerLabel.Size = new System.Drawing.Size(90, 13);
+            this.washerLabel.TabIndex = 25;
+            this.washerLabel.Text = "Наличие шайбы:";
+            // 
+            // washerCheckBox
+            // 
+            this.washerCheckBox.AutoSize = true;
+            this.washerCheckBox.Location = new System.Drawing.Point(516, 42);
+            this.washerCheckBox.Name = "washerCheckBox";
+            this.washerCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.washerCheckBox.TabIndex = 9;
+            this.washerCheckBox.UseVisualStyleBackColor = true;
             // 
             // unitsLabel2
             // 
@@ -344,7 +362,7 @@ namespace CADSelfTappingScrewUI
             this.manualInputRadioButton.TabStop = true;
             this.manualInputRadioButton.Text = "Ручной ввод";
             this.manualInputRadioButton.UseVisualStyleBackColor = true;
-            this.manualInputRadioButton.CheckedChanged += new System.EventHandler(this.manualInputRadioButton_CheckedChanged);
+            this.manualInputRadioButton.CheckedChanged += new System.EventHandler(this.ManualInputRadioButton_CheckedChanged);
             // 
             // maxParametersRadioButton
             // 
@@ -356,7 +374,7 @@ namespace CADSelfTappingScrewUI
             this.maxParametersRadioButton.TabStop = true;
             this.maxParametersRadioButton.Text = "Макс. параметры";
             this.maxParametersRadioButton.UseVisualStyleBackColor = true;
-            this.maxParametersRadioButton.CheckedChanged += new System.EventHandler(this.maxParametersRadioButton_CheckedChanged);
+            this.maxParametersRadioButton.CheckedChanged += new System.EventHandler(this.MaxParametersRadioButton_CheckedChanged);
             // 
             // defaultParametersRadioButton
             // 
@@ -366,9 +384,9 @@ namespace CADSelfTappingScrewUI
             this.defaultParametersRadioButton.Size = new System.Drawing.Size(98, 17);
             this.defaultParametersRadioButton.TabIndex = 14;
             this.defaultParametersRadioButton.TabStop = true;
-            this.defaultParametersRadioButton.Text = "По-умолчанию";
+            this.defaultParametersRadioButton.Text = "По умолчанию";
             this.defaultParametersRadioButton.UseVisualStyleBackColor = true;
-            this.defaultParametersRadioButton.CheckedChanged += new System.EventHandler(this.defaultParametersRadioButton_CheckedChanged);
+            this.defaultParametersRadioButton.CheckedChanged += new System.EventHandler(this.DefaultParametersRadioButton_CheckedChanged);
             // 
             // minParametersRadioButton
             // 
@@ -380,7 +398,7 @@ namespace CADSelfTappingScrewUI
             this.minParametersRadioButton.TabStop = true;
             this.minParametersRadioButton.Text = "Мин. параметры";
             this.minParametersRadioButton.UseVisualStyleBackColor = true;
-            this.minParametersRadioButton.CheckedChanged += new System.EventHandler(this.minParametersRadioButton_CheckedChanged);
+            this.minParametersRadioButton.CheckedChanged += new System.EventHandler(this.MinParametersRadioButton_CheckedChanged);
             // 
             // buildButton
             // 
@@ -390,25 +408,7 @@ namespace CADSelfTappingScrewUI
             this.buildButton.TabIndex = 10;
             this.buildButton.Text = "Построить";
             this.buildButton.UseVisualStyleBackColor = true;
-            this.buildButton.Click += new System.EventHandler(this.buildButton_Click);
-            // 
-            // washerCheckBox
-            // 
-            this.washerCheckBox.AutoSize = true;
-            this.washerCheckBox.Location = new System.Drawing.Point(516, 42);
-            this.washerCheckBox.Name = "washerCheckBox";
-            this.washerCheckBox.Size = new System.Drawing.Size(15, 14);
-            this.washerCheckBox.TabIndex = 9;
-            this.washerCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // washerLabel
-            // 
-            this.washerLabel.AutoSize = true;
-            this.washerLabel.Location = new System.Drawing.Point(479, 26);
-            this.washerLabel.Name = "washerLabel";
-            this.washerLabel.Size = new System.Drawing.Size(90, 13);
-            this.washerLabel.TabIndex = 25;
-            this.washerLabel.Text = "Наличие шайбы:";
+            this.buildButton.Click += new System.EventHandler(this.BuildButton_Click);
             // 
             // MainForm
             // 

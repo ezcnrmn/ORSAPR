@@ -351,7 +351,7 @@ namespace CADSelfTappingScrew
             { ParametersName.HeadDiameter, 18 },
             { ParametersName.RodDiameter, 9.9 }
         };
-
+        
         /// <summary>
         /// Словарь минимальных значений
         /// </summary>

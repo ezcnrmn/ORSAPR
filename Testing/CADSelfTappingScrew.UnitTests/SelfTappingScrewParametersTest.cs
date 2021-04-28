@@ -431,5 +431,21 @@ namespace CADSelfTappingScrew.UnitTests
                 }
             );
         }
+        
+        [TestCase(TestName = "Тест на корректное значение Шайбы")]
+        public void Washer_CorrectValue_ReturnsSameValue()
+        {
+            //Setup
+            var parameters = new SelfTappingScrewParameters();
+            var sourceValue = true;
+            var expectedValue = sourceValue;
+
+            //Act
+            parameters.Washer = sourceValue;
+            var actualValue = parameters.Washer;
+
+            //Assert
+            NUnit.Framework.Assert.AreEqual(expectedValue, actualValue);
+        }
     }
 }
