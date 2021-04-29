@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Kompas6Constants3D;
@@ -24,13 +25,18 @@ namespace KompasWrapper
         /// Свойство Part
         /// </summary>
         public ksPart KsPart { get; set; } = null;
-
+        
         /// <summary>
         /// Функция запуска Компас-3D
         /// </summary>
         public void OpenKompas()
         {
-            if (KompasObject == null)
+            try
+            {
+                KompasObject = (KompasObject)Marshal.GetActiveObject
+                    ("KOMPAS.Application.5");
+            }
+            catch
             {
                 Type t = Type.GetTypeFromProgID("KOMPAS.Application.5");
                 KompasObject = (KompasObject)Activator.CreateInstance(t);
@@ -40,10 +46,7 @@ namespace KompasWrapper
             {
                 KompasObject.Visible = true;
                 KompasObject.ActivateControllerAPI();
-            }
 
-            if (KompasObject != null)
-            {
                 ksDocument3D iDocument3D = (ksDocument3D)KompasObject.Document3D();
 
                 iDocument3D.Create(false /*видимый*/, true /*деталь*/);
