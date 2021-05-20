@@ -148,6 +148,27 @@ namespace CADSelfTappingScrew.UnitTests
             );
         }
 
+        [TestCase(TestName = "Тест на некорректное значение Внутреннего диаметра резьбы")]
+        public void InternalThreadDiameter_OutOfMaxParameterRange_ThrowsException()
+        {
+            //Setup
+            var parameters = new SelfTappingScrewParameters();
+            var sourceValue = 8;
+            parameters.ThreadDiameter = 8;
+            parameters.HeadDiameter = 9;
+            parameters.RodDiameter = 8;
+
+            //Assert
+            NUnit.Framework.Assert.Throws<ArgumentException>
+            (
+                () =>
+                {
+                    //Act
+                    parameters.InternalThreadDiameter = sourceValue;
+                }
+            );
+        }
+
         [TestCase(TestName = "Тест на корректное значение Диаметра резьбы")]
         public void RodDiameter_CorrectValue_ReturnsSameValue()
         {
@@ -386,6 +407,25 @@ namespace CADSelfTappingScrew.UnitTests
             var parameters = new SelfTappingScrewParameters();
             var sourceValue = 50;
             parameters.RodLength = 50;
+
+            //Assert
+            NUnit.Framework.Assert.Throws<ArgumentException>
+            (
+                () =>
+                {
+                    //Act
+                    parameters.ThreadLength = sourceValue;
+                }
+            );
+        }
+
+        [TestCase(TestName = "Тест на некорректное значение Длины резьбы")]
+        public void ThreadLength_OutOfDependentMaxParameterRange_ThrowsException()
+        {
+            //Setup
+            var parameters = new SelfTappingScrewParameters();
+            var sourceValue = 98;
+            parameters.RodLength = 99;
 
             //Assert
             NUnit.Framework.Assert.Throws<ArgumentException>

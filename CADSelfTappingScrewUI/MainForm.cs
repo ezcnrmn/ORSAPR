@@ -23,7 +23,17 @@ namespace CADSelfTappingScrewUI
         /// </summary>
         Dictionary<string, bool> buildEnableDict 
             = new Dictionary<string, bool>();
-        
+
+        /// <summary>
+        /// Цвет по-умолчанию (белый)
+        /// </summary>
+        private Color defaultColor = Color.White;
+
+        /// <summary>
+        /// Цвет ошибки (лососевый)
+        /// </summary>
+        private Color errorColor = Color.Salmon;
+
         /// <summary>
         /// Главная форма
         /// </summary>
@@ -44,7 +54,7 @@ namespace CADSelfTappingScrewUI
 
             if (sourceString.Length == 0)
             {
-                textBox.BackColor = Color.White;
+                textBox.BackColor = defaultColor;
                 buildEnableDict[textBox.Name] = false;
             }
             else
@@ -53,13 +63,13 @@ namespace CADSelfTappingScrewUI
                 {
                     double value = double.Parse(sourceString);
 
-                    textBox.BackColor = Color.White;
+                    textBox.BackColor = defaultColor;
                     buildEnableDict[textBox.Name] = true;
                 }
                 catch
                 {
                     buildEnableDict[textBox.Name] = false;
-                    textBox.BackColor = Color.Salmon;
+                    textBox.BackColor = errorColor;
 
                     string errorMessage = "Значение в текстовом поле должно быть числом!" +
                                           "\nДесятичный разделитель - только \"запятая\"!";
@@ -124,7 +134,7 @@ namespace CADSelfTappingScrewUI
                     string textBoxName = parameterName + "TextBox";
                     Control[] erroredTextBox = this.Controls.Find(textBoxName,
                         true);
-                    erroredTextBox[0].BackColor = Color.Salmon;
+                    erroredTextBox[0].BackColor = errorColor;
                     MessageBox.Show(a.Message.Split('\n')[0],
                         "Внимание!",
                         MessageBoxButtons.OK, 
@@ -151,24 +161,31 @@ namespace CADSelfTappingScrewUI
         /// Функция установки параметров в поля параметров
         /// </summary>
         /// <param name="enable">Значение в buildEnableDict</param>
-        /// /// <param name="type">0 - пустое, 1 - минимальное, 2 - максимальное, 3 - по-умолчанию</param>
-        private void SetParameters(bool enable, int type)
+        /// /// <param name="type">Тип из перечесления имен типов</param>
+        private void SetParameters(bool enable, Enum type)
         {
             Dictionary<string, string> parametersDictionary = new Dictionary<string, string>();
             foreach (Enum par in Enum.GetValues(typeof(ParametersName)))
             {
                 //TODO:
-                if(type == 0)
-                    parametersDictionary[par.ToString()] = "";
-                else if (type == 1)
-                    parametersDictionary[par.ToString()] = 
-                        SelfTappingScrewParameters.MinValues[par].ToString();
-                else if (type == 2)
-                    parametersDictionary[par.ToString()] = 
-                        SelfTappingScrewParameters.MaxValues[par].ToString();
-                else if (type == 3)
-                    parametersDictionary[par.ToString()] = 
-                        SelfTappingScrewParameters.DefaultValues[par].ToString();
+                switch (type)
+                {
+                    case TypeNames.Min:
+                        parametersDictionary[par.ToString()] =
+                            SelfTappingScrewParameters.MinValues[par].ToString();
+                        break;
+                    case TypeNames.Max:
+                        parametersDictionary[par.ToString()] =
+                            SelfTappingScrewParameters.MaxValues[par].ToString();
+                        break;
+                    case TypeNames.Default:
+                        parametersDictionary[par.ToString()] =
+                            SelfTappingScrewParameters.DefaultValues[par].ToString();
+                        break;
+                    default:
+                        parametersDictionary[par.ToString()] = "";
+                        break;
+                }
             }
             
             string tempName;
@@ -180,7 +197,7 @@ namespace CADSelfTappingScrewUI
                                c.Name.Substring(1, c.Name.Length - 8);
                     c.Text = parametersDictionary[tempName];
 
-                    c.BackColor = Color.White;
+                    c.BackColor = defaultColor;
                     buildEnableDict[c.Name] = enable;
                 }
             }
@@ -192,7 +209,7 @@ namespace CADSelfTappingScrewUI
         private void MinParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             //TODO int->enum
-            SetParameters(true, 1);
+            SetParameters(true, TypeNames.Min);
         }
 
         /// <summary>
@@ -201,7 +218,7 @@ namespace CADSelfTappingScrewUI
         private void DefaultParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
 
-            SetParameters(true, 3);
+            SetParameters(true, TypeNames.Default);
         }
 
         /// <summary>
@@ -209,7 +226,7 @@ namespace CADSelfTappingScrewUI
         /// </summary>
         private void MaxParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            SetParameters(true, 2);
+            SetParameters(true, TypeNames.Max);
         }
 
         /// <summary>
@@ -217,7 +234,7 @@ namespace CADSelfTappingScrewUI
         /// </summary>
         private void ManualInputRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            SetParameters(true, 0);
+            SetParameters(true, TypeNames.Empty);
         }
     }
 }
