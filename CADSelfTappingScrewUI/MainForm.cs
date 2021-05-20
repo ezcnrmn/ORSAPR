@@ -70,7 +70,6 @@ namespace CADSelfTappingScrewUI
             }
         }
         
-        //TODO: XML комментарии?
         /// <summary>
         /// Событие нажатия кнопки постройки
         /// </summary>
@@ -140,7 +139,6 @@ namespace CADSelfTappingScrewUI
             }
         }
 
-         //TODO: RSDN
         /// <summary>
         /// Событие покидания текстового поля
         /// </summary>
@@ -159,6 +157,7 @@ namespace CADSelfTappingScrewUI
             Dictionary<string, string> parametersDictionary = new Dictionary<string, string>();
             foreach (Enum par in Enum.GetValues(typeof(ParametersName)))
             {
+                //TODO:
                 if(type == 0)
                     parametersDictionary[par.ToString()] = "";
                 else if (type == 1)
@@ -187,25 +186,24 @@ namespace CADSelfTappingScrewUI
             }
         }
         
-        //TODO: XML комментарии?
         /// <summary>
         /// Событие переключения на radio button с минимальными параметрами
         /// </summary>
         private void MinParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            //TODO int->enum
             SetParameters(true, 1);
         }
 
-        //TODO: XML комментарии?
         /// <summary>
         /// Событие переключения на radio button с параметрами по-умолчанию
         /// </summary>
         private void DefaultParametersRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+
             SetParameters(true, 3);
         }
 
-        //TODO: XML комментарии?
         /// <summary>
         /// Событие переключения на radio button с максимальными параметрами
         /// </summary>
@@ -214,7 +212,6 @@ namespace CADSelfTappingScrewUI
             SetParameters(true, 2);
         }
 
-        //TODO: XML комментарии?
         /// <summary>
         /// Событие переключения на radio button с вводом параметров вручную
         /// </summary>

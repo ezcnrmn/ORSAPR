@@ -68,7 +68,6 @@ namespace CADSelfTappingScrew
             {
                 double min = 3.0;
                 double max = 18.0;
-                 //TODO: RSDN
                 double dependentParameter = (InternalThreadDiameter < ThreadDiameter) ? 
                     ThreadDiameter : InternalThreadDiameter;
                 dependentParameter = (dependentParameter < RodDiameter) ? 
@@ -334,8 +333,6 @@ namespace CADSelfTappingScrew
             throw new ArgumentException(message, parameterName.ToString());
         }
         
-        //TODO: строковые ключи переделать на перечисления.
-        //TODO: XML комментарии?
         /// <summary>
         /// Словарь максимальных значений
         /// </summary>
